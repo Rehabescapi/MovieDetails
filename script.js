@@ -1,3 +1,15 @@
+var Card = React.createClass({
+	// image poster begin url: https://image.tmdb.org/t/p/w500/
+	render: function() {
+		return (
+			<div>
+			</div>
+		);
+	}
+	
+});
+
+
 var Search = React.createClass({
 	getInitialState: function() {
 		return { title: "" };
@@ -35,7 +47,7 @@ var MoviesInTheatres = React.createClass({
 	
 	componentDidMount: function() {
 		var component = this;
-		$.get('https://api.themoviedb.org/', function(data) {
+		$.get('https://api.themoviedb.org/3/discover/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4&with_release_type=2|3&region=US', function(data) {
 			component.setState(data);
 			console.log(data);
 		});
