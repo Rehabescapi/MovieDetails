@@ -1,1 +1,1 @@
-# React-Movie
+## Movie Search made with React
