@@ -1,0 +1,13 @@
+#app {
+	background-color:#666;
+	height:100vh;
+	min-width:100%;
+}
+
+#main {
+	background-color:#999;
+	height:100vh;
+	margin:0 auto;
+	text-align:center;
+	width:90%;
+}
