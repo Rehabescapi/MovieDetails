@@ -17,9 +17,9 @@
 
 	var Search = React.createClass({
 		getInitialState: function() {
-				return {
-					movie: {}
-				}
+			return {
+				movie: {}
+			}
 		},
 
 		handleSubmit: function(e) {
@@ -48,9 +48,9 @@
 
 	var MoviesInTheatres = React.createClass({
 		getInitialState: function() {
-				return {
-					movie: {}
-				}
+			return {
+				movie: {}
+			}
 		},
 
 		componentWillMount: function() {
