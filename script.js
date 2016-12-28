@@ -54,7 +54,6 @@
 		},
 
 		componentWillMount: function() {
-			var card;
 			$.get('https://api.themoviedb.org/3/discover/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4&with_release_type=2|3&region=US', (data) => {
 				this.setState({movie: data.results[0]});
 			});
