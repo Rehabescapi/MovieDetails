@@ -18,7 +18,7 @@
 	var Search = React.createClass({
 		getInitialState: function() {
 			return {
-				movie: {}
+				movie: null
 			}
 		},
 
@@ -49,7 +49,7 @@
 	var MoviesInTheatres = React.createClass({
 		getInitialState: function() {
 			return {
-				movie: {}
+				movie: null
 			}
 		},
 
