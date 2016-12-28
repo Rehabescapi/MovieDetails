@@ -1,12 +1,12 @@
 (function(){
 	"use strict";
-	
+
 	var Card = React.createClass({
 		render() {
 			imgSrc = 'https://image.tmdb.org/t/p/w500/';
 			return (
 				<div id='card'>
-					<img src={imgSrc} + {this.props.poster} />
+					<img src={imgSrc + this.props.poster} />
 					<h4>{this.props.title}</h4>
 					<p>{this.props.overview}</p>
 				</div>
