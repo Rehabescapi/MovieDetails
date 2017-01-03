@@ -2,3 +2,47 @@
 	margin:0;
 	padding:0;
 }
+#title {
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+}
+#title .glyphicon:before {
+	vertical-align:-22px;
+}
+#title .glyphicon {
+	font-size:2.1em;
+	margin:0 0.5% 0 0;
+}
+
+#card {
+	display:none;
+	height:350px;
+	letter-spacing: 1px;
+	width:100%;
+}
+#card > #content-align {
+	-webkit-box-orient:vertical;
+	-webkit-box-direction:normal;
+	-ms-flex-direction:column;
+	flex-direction:column;
+}
+#card > img {
+}
+#card h4 {
+	font-size:2rem;
+}
+#card #overview {
+	font-size:1.5rem;
+}
+
+#slideshow {
+	height:400px;
+	overflow:hidden;
+}
+#slideshow > h3 {
+	font-size:2em;
+}
+.activeMovie {
+	display:block;
+}
