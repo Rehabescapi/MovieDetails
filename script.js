@@ -119,10 +119,10 @@
 				<div id='slideshow'>
 					<h3>Recent New Movies</h3>
 				
-				/* 
+				{/* 
 					FIX: need to show only one card at a time
 					<Card poster={this.state.movieList[0].poster_path} title={this.state.movieList[0].title} overview={this.state.movieList[0].overview} release={this.state.movieList[0].release_date} />
-				*/
+				*/}
 				
 					{this.state.movieList.map(function(eachMovie, key) {
 						return (
