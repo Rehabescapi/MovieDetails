@@ -1,35 +1,27 @@
+/**
+
+	Get RecentMovies array
+	Show one recentmovie at a time
+
+	Fix where search card displays
+	Fix search component layout
+
+**/
+
+
 (function(){
 	"use strict";
-	
-	var actions = {
-		Previous: function(){
-			if (this.state.currMovie == 0) {
-				this.state.currMovie = this.state.movieList.length - 1;
-			}
-			
-			this.state.currMovie--;
-			
-		},
-		Next: function(){
-			if (this.state.currMovie == this.state.movieList.length - 1) {
-				this.state.currMovie = 0;
-			}
-			
-			this.state.currMovie++;
-			
-		}
-	};
 
 	// card class for each movie poster
 	var Card = React.createClass({
-		
+
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
-			
+
 			// change to U.S. date string
 			var movieYear = this.props.release.slice(0,5);
 			var releaseDate = this.props.release.slice(5) + "-" + movieYear.slice(0,4);
-			
+
 			return (
 				<div id='card'>
 					<img src={imgSrc + this.props.poster} />
@@ -43,7 +35,7 @@
 		}
 	});
 
-	// render search form
+	// render search and form
 	var Search = React.createClass({
 		getInitialState: function() {
 			return {
@@ -78,47 +70,70 @@
 
 	// class for recent movies
 	var RecentMovies = React.createClass({
-		Previous: function() {
-			actions.Previous();
-		},
-		Next: function() {
-			actions.Next();
-		},
-		
+
 		getInitialState: function() {
 			return {
 				movieList: [],
-				currMovie: 0
-			}
+				counter: 0
+			};
 		},
 
-		componentDidMount: function() {
+		// slideshow control functions
+		Previous: function() {
+
+			if (this.state.counter == 0) {
+				this.setState({'counter': this.state.movieList.length - 1});
+			} else {
+				this.setState({'counter': this.state.counter -= 1});
+			}
+
+			/*
+				render new Card
+			*/
+		},
+		Next: function() {
+
+			if (this.state.counter == this.state.movieList.length - 1) {
+				this.setState({'counter': 0});
+			} else {
+				this.setState({'counter': this.state.counter += 1});
+			}
+
+			/*
+				render new Card
+			*/
+
+		},
+
+		componentWillMount: function() {
 			$.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1', (data) => {
-				this.setState({movieList: data.results});
+				this.setState({'movieList': data.results});
+
+				//may need callback to retrieve async data to show only one Card
+
 			});
 		},
 
 		render() {
+			var movie = this.state.movieList[this.state.counter];
+			if(!movie) {
+				return null;
+			}
 			return (
 				<div id='slideshow'>
-					<h3>Recent New Movies</h3>
-					<SlideshowControls currMovie={this.state.movieList[0]} prevMovie={this.Previous} nextMovie={this.Next} />
-					{this.state.movieList.map(function(eachMovie, key) {
-						return (
-							<Card poster={eachMovie.poster_path} title={eachMovie.title} overview={eachMovie.overview} release={eachMovie.release_date} key={key}/>
-						)
-					})}
+					<Card poster={movie.poster_path} title={movie.title} overview={movie.overview} release={movie.release_date} />
+					<SlideshowControls prevMovie={this.Previous} nextMovie={this.Next} />
 				</div>
 			)}
 	});
-	
+
 	// recent movie slideshow controls
 	var SlideshowControls = React.createClass({
 		render() {
 			return (
 				<div id='controls'>
-					<button onClick={this.props.prevMovie}>Previous Poster</button>
-					<button onClick={this.props.nextMovie}>Next Poster</button>
+					<button onClick={this.props.prevMovie}>Previous Movie</button>
+					<button onClick={this.props.nextMovie}>Next Movie</button>
 				</div>
 			)
 		}
