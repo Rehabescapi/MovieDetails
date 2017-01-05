@@ -2,7 +2,7 @@
 
 	Get RecentMovies array
 	Show one recentmovie at a time
-	
+
 	Fix where search card displays
 	Fix search component layout
 
@@ -14,14 +14,14 @@
 
 	// card class for each movie poster
 	var Card = React.createClass({
-		
+
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
-			
+
 			// change to U.S. date string
 			var movieYear = this.props.release.slice(0,5);
 			var releaseDate = this.props.release.slice(5) + "-" + movieYear.slice(0,4);
-			
+
 			return (
 				<div id='card'>
 					<img src={imgSrc + this.props.poster} />
@@ -70,71 +70,63 @@
 
 	// class for recent movies
 	var RecentMovies = React.createClass({
-		
+
 		getInitialState: function() {
 			return {
 				movieList: [],
 				counter: 0
 			};
 		},
-		
+
 		// slideshow control functions
 		Previous: function() {
-			
+
 			if (this.state.counter == 0) {
 				this.setState({'counter': this.state.movieList.length - 1});
 			} else {
 				this.setState({'counter': this.state.counter -= 1});
 			}
-			
+
 			/*
 				render new Card
 			*/
 		},
 		Next: function() {
-			
+
 			if (this.state.counter == this.state.movieList.length - 1) {
 				this.setState({'counter': 0});
 			} else {
 				this.setState({'counter': this.state.counter += 1});
 			}
-			
+
 			/*
 				render new Card
 			*/
-			
+
 		},
 
 		componentWillMount: function() {
 			$.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1', (data) => {
 				this.setState({'movieList': data.results});
-				
+
 				//may need callback to retrieve async data to show only one Card
-				
+
 			});
 		},
 
 		render() {
+			var movie = this.state.movieList[this.state.counter];
+			if(!movie) {
+				return null;
+			}
 			return (
 				<div id='slideshow'>
-					<h3>Recent New Movies</h3>
-				
-				{/* 
-					FIX: need to show only one card at a time
-					<Card poster={this.state.movieList[0].poster_path} title={this.state.movieList[0].title} overview={this.state.movieList[0].overview} release={this.state.movieList[0].release_date} />
-				*/}
-				
-					{this.state.movieList.map(function(eachMovie, key) {
-						return (
-							<Card poster={eachMovie.poster_path} title={eachMovie.title} overview={eachMovie.overview} release={eachMovie.release_date} key={key} />
-						)
-					})}
-		
+					<Card poster={movie.poster_path} title={movie.title} overview={movie.overview} release={movie.release_date} />
 					<SlideshowControls prevMovie={this.Previous} nextMovie={this.Next} />
 				</div>
 			)}
 	});
-	
+
 	// recent movie slideshow controls
 	var SlideshowControls = React.createClass({
 		render() {
