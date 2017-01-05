@@ -87,6 +87,9 @@
 				this.setState({'counter': this.state.counter -= 1});
 			}
 			
+			/*
+				render new Card
+			*/
 		},
 		Next: function() {
 			
@@ -95,6 +98,10 @@
 			} else {
 				this.setState({'counter': this.state.counter += 1});
 			}
+			
+			/*
+				render new Card
+			*/
 			
 		},
 
@@ -112,13 +119,17 @@
 				<div id='slideshow'>
 					<h3>Recent New Movies</h3>
 				
-				// FIX: need to show only one card at a time
+				/* 
+					FIX: need to show only one card at a time
+					<Card poster={this.state.movieList[0].poster_path} title={this.state.movieList[0].title} overview={this.state.movieList[0].overview} release={this.state.movieList[0].release_date} />
+				*/
 				
 					{this.state.movieList.map(function(eachMovie, key) {
 						return (
 							<Card poster={eachMovie.poster_path} title={eachMovie.title} overview={eachMovie.overview} release={eachMovie.release_date} key={key} />
 						)
 					})}
+		
 					<SlideshowControls prevMovie={this.Previous} nextMovie={this.Next} />
 				</div>
 			)}
