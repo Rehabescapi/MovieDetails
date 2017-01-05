@@ -1,24 +1,16 @@
+/**
+
+	Get RecentMovies array
+	Show one recentmovie at a time
+	
+	Fix where search card displays
+	Fix search component layout
+
+**/
+
+
 (function(){
 	"use strict";
-	
-	var actions = {
-		Previous: function(){
-			if (this.state.currMovie == 0) {
-				this.state.currMovie = this.state.movieList.length - 1;
-			}
-			
-			this.state.currMovie--;
-			
-		},
-		Next: function(){
-			if (this.state.currMovie == this.state.movieList.length - 1) {
-				this.state.currMovie = 0;
-			}
-			
-			this.state.currMovie++;
-			
-		}
-	};
 
 	// card class for each movie poster
 	var Card = React.createClass({
@@ -43,7 +35,7 @@
 		}
 	});
 
-	// render search form
+	// render search and form
 	var Search = React.createClass({
 		getInitialState: function() {
 			return {
@@ -78,23 +70,40 @@
 
 	// class for recent movies
 	var RecentMovies = React.createClass({
-		Previous: function() {
-			actions.Previous();
-		},
-		Next: function() {
-			actions.Next();
-		},
 		
 		getInitialState: function() {
 			return {
 				movieList: [],
-				currMovie: 0
+				counter: 0
+			};
+		},
+		
+		// slideshow control functions
+		Previous: function() {
+			
+			if (this.state.counter == 0) {
+				this.setState({'counter': this.state.movieList.length - 1});
+			} else {
+				this.setState({'counter': this.state.counter -= 1});
 			}
+			
+		},
+		Next: function() {
+			
+			if (this.state.counter == this.state.movieList.length - 1) {
+				this.setState({'counter': 0});
+			} else {
+				this.setState({'counter': this.state.counter += 1});
+			}
+			
 		},
 
-		componentDidMount: function() {
+		componentWillMount: function() {
 			$.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1', (data) => {
-				this.setState({movieList: data.results});
+				this.setState({'movieList': data.results});
+				
+				//may need callback to retrieve async data to show only one Card
+				
 			});
 		},
 
@@ -102,12 +111,15 @@
 			return (
 				<div id='slideshow'>
 					<h3>Recent New Movies</h3>
-					<SlideshowControls currMovie={this.state.movieList[0]} prevMovie={this.Previous} nextMovie={this.Next} />
+				
+				// FIX: need to show only one card at a time
+				
 					{this.state.movieList.map(function(eachMovie, key) {
 						return (
-							<Card poster={eachMovie.poster_path} title={eachMovie.title} overview={eachMovie.overview} release={eachMovie.release_date} key={key}/>
+							<Card poster={eachMovie.poster_path} title={eachMovie.title} overview={eachMovie.overview} release={eachMovie.release_date} key={key} />
 						)
 					})}
+					<SlideshowControls prevMovie={this.Previous} nextMovie={this.Next} />
 				</div>
 			)}
 	});
@@ -117,8 +129,8 @@
 		render() {
 			return (
 				<div id='controls'>
-					<button onClick={this.props.prevMovie}>Previous Poster</button>
-					<button onClick={this.props.nextMovie}>Next Poster</button>
+					<button onClick={this.props.prevMovie}>Previous Movie</button>
+					<button onClick={this.props.nextMovie}>Next Movie</button>
 				</div>
 			)
 		}
