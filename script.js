@@ -1,9 +1,6 @@
 /**
 
-	Get RecentMovies array
-	Show one recentmovie at a time
-
-	Fix where search card displays
+	Fix where search card displays / hide recent movies when search
 	Fix search component layout
 
 **/
@@ -11,6 +8,18 @@
 
 (function(){
 	"use strict";
+  
+  var Header = React.createClass({
+    render() {
+      return (
+        <div id="title">
+          <span className="glyphicon glyphicon-film"></span>
+          <h1>Movie Search</h1>
+					<Search addCard={this.addCard} onclick={this.props.onclick}/>
+        </div>
+      );
+    }
+  });
 
 	// card class for each movie poster
 	var Card = React.createClass({
@@ -26,7 +35,7 @@
 				<div id='card'>
 					<img src={imgSrc + this.props.poster} />
 					<div id="content-align">
-						<h4>{this.props.title}</h4>
+						<h3>{this.props.title}</h3>
 						<p>Release Date: {releaseDate}</p>
 						<p id="overview">{this.props.overview}</p>
 					</div>
@@ -35,7 +44,8 @@
 		}
 	});
 
-	// render search and form
+  
+	// create form
 	var Search = React.createClass({
 		getInitialState: function() {
 			return {
@@ -57,11 +67,11 @@
 				<div id="search">
 					<form onSubmit={this.handleSubmit}>
 						<input ref='search' />
-						<button>Search</button>
+						<button onClick={this.props.onclick}>Search</button>
 					</form>
-					{this.state.movie &&
-						<Card poster={this.state.movie.poster_path} title={this.state.movie.title} overview={this.state.movie.overview} release={this.state.movie.release_date} />
-					}
+					{this.state.movie && 
+            <Card poster={this.state.movie.poster_path} title={this.state.movie.title} overview={this.state.movie.overview} release={this.state.movie.release_date} />
+          }
 				</div>
 			);
 		}
@@ -86,10 +96,6 @@
 			} else {
 				this.setState({'counter': this.state.counter -= 1});
 			}
-
-			/*
-				render new Card
-			*/
 		},
 		Next: function() {
 
@@ -98,19 +104,11 @@
 			} else {
 				this.setState({'counter': this.state.counter += 1});
 			}
-
-			/*
-				render new Card
-			*/
-
 		},
 
 		componentWillMount: function() {
 			$.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1', (data) => {
 				this.setState({'movieList': data.results});
-
-				//may need callback to retrieve async data to show only one Card
-
 			});
 		},
 
@@ -121,12 +119,14 @@
 			}
 			return (
 				<div id='slideshow'>
+					<h2>Recent Movies</h2>
 					<Card poster={movie.poster_path} title={movie.title} overview={movie.overview} release={movie.release_date} />
 					<SlideshowControls prevMovie={this.Previous} nextMovie={this.Next} />
 				</div>
 			)}
 	});
 
+  
 	// recent movie slideshow controls
 	var SlideshowControls = React.createClass({
 		render() {
@@ -141,20 +141,22 @@
 
 
 	var Main = React.createClass({
+		getInitialState: function(){
+			return {
+				displayRecent: true
+			}
+		},
+		handleRecent: function() {
+			this.setState({displayRecent: false});
+		},
 		addCard: function(searchTitle) {
-			this.setState({
-				title: searchTitle
-			});
+			this.setState({title: searchTitle});
 		},
 		render() {
 			return (
 				<div id='main'>
-					<div id="title">
-						<span className="glyphicon glyphicon-film"></span>
-						<h1>Movie Search</h1>
-					</div>
-					<Search addCard={this.addCard} />
-					<RecentMovies />
+          <Header onclick={this.handleRecent}/>
+					{this.state.displayRecent ? <RecentMovies /> : null}
 				</div>
 			);
 		}
