@@ -8,6 +8,7 @@
 
 (function(){
 	"use strict";
+	var timer;
   
   var Header = React.createClass({
     render() {
@@ -90,6 +91,9 @@
 
 		// slideshow control functions
 		Previous: function() {
+			if (timer) {
+				clearTimeout(timer);
+			}
 
 			if (this.state.counter == 0) {
 				this.setState({'counter': this.state.movieList.length - 1});
@@ -98,6 +102,9 @@
 			}
 		},
 		Next: function() {
+			if (timer) {
+				clearTimeout(timer);
+			}
 
 			if (this.state.counter == this.state.movieList.length - 1) {
 				this.setState({'counter': 0});
@@ -114,9 +121,15 @@
 
 		render() {
 			var movie = this.state.movieList[this.state.counter];
+			
 			if(!movie) {
 				return null;
 			}
+			
+			timer = setTimeout(function() {
+				this.Next();
+			}.bind(this), 5000);
+			
 			return (
 				<div id='slideshow'>
 					<h2>Recent Movies</h2>
