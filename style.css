@@ -1,21 +1,24 @@
 body {
+	background-color:#ccc;
   margin:0 auto;
   width:90%;
 }
 
 #title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
 }
-
 #title .glyphicon:before {
   vertical-align: -22px;
 }
-
 #title .glyphicon {
   font-size: 2.1em;
   margin: 0 0.5% 0 0;
+}
+
+#search {
+	margin:3% 0;
 }
 
 #card {
@@ -24,6 +27,7 @@ body {
   display: flex;
   letter-spacing: 1px;
 	height:300px;
+	margin:2% 0;
 }
 #card > img {
 	width:18%;
@@ -36,10 +40,10 @@ body {
   font-size: 2rem;
 	margin:0;
 }
-
 #card #overview {
   font-size: 1.5rem;
 }
+
 #slideshow {
 	background-color:#888;
 	border-radius:10px;
@@ -51,5 +55,4 @@ body {
 }
 #slideshow button {
 	color:#000;
-	margin:2% 0 0 0;
 }

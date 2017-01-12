@@ -1,26 +1,17 @@
-/**
-
-	Fix where search card displays / hide recent movies when search
-	Fix search component layout
-
-**/
-
-
 (function(){
 	"use strict";
 	var timer;
-  
-  var Header = React.createClass({
-    render() {
-      return (
-        <div id="title">
-          <span className="glyphicon glyphicon-film"></span>
-          <h1>Movie Search</h1>
-					<Search addCard={this.addCard} onclick={this.props.onclick}/>
-        </div>
-      );
-    }
-  });
+	
+	var Header = React.createClass({
+		render() {
+			return (
+				<div id="title">
+					<span className="glyphicon glyphicon-film"></span>
+					<h1>Movie Search</h1>
+				</div>
+			);
+		}
+	});
 
 	// card class for each movie poster
 	var Card = React.createClass({
@@ -45,7 +36,7 @@
 		}
 	});
 
-  
+
 	// create form
 	var Search = React.createClass({
 		getInitialState: function() {
@@ -71,8 +62,8 @@
 						<button onClick={this.props.onclick}>Search</button>
 					</form>
 					{this.state.movie && 
-            <Card poster={this.state.movie.poster_path} title={this.state.movie.title} overview={this.state.movie.overview} release={this.state.movie.release_date} />
-          }
+						<Card poster={this.state.movie.poster_path} title={this.state.movie.title} overview={this.state.movie.overview} release={this.state.movie.release_date} />
+					}
 				</div>
 			);
 		}
@@ -168,7 +159,8 @@
 		render() {
 			return (
 				<div id='main'>
-          <Header onclick={this.handleRecent}/>
+          <Header />
+					<Search addCard={this.addCard} onclick={this.handleRecent} />
 					{this.state.displayRecent ? <RecentMovies /> : null}
 				</div>
 			);
