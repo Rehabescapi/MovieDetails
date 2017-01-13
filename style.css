@@ -1,47 +1,61 @@
 body {
 	background-color:#ccc;
-  margin:0 auto;
-  width:90%;
+	font-family: sans-serif;
+	margin:0 auto;
+	width:90%;
 }
-
 #title {
+	width:265px;
+}
+#title a{
+	color:#000;
 	display:-webkit-box;
 	display:-ms-flexbox;
 	display:flex;
+	text-decoration: none;
 }
-#title .glyphicon:before {
+#title a .glyphicon:before {
   vertical-align: -22px;
 }
-#title .glyphicon {
-  font-size: 2.1em;
-  margin: 0 0.5% 0 0;
+#title a .glyphicon {
+	font-size: 2.1em;
+	margin: 0 0.5% 0 0;
 }
 
 #search {
-	margin:3% 0;
+	margin:2% 0;
+}
+
+.genre {
+	background-color:#000;
+	border-radius:3px;
+	color:#fff;
+	display:inline-block;
+	padding:0 3px;
+	margin:0 3px 0 0;
 }
 
 #card {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  letter-spacing: 1px;
-	height:300px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	letter-spacing: 1px;
 	margin:2% 0;
 }
 #card > img {
-	width:18%;
+	height:325px;
+	width:215px;
 }
 #card > #content-align {
-	padding:2%;
+	padding:0 2%;
 	width:50%;
 }
 #card h3 {
-  font-size: 2rem;
+	font-size: 2rem;
 	margin:0;
 }
 #card #overview {
-  font-size: 1.5rem;
+	font-size: 1.5rem;
 }
 
 #slideshow {

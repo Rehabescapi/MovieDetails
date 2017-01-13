@@ -5,16 +5,18 @@
 	var Header = React.createClass({
 		render() {
 			return (
-				<div id="title">
-					<span className="glyphicon glyphicon-film"></span>
-					<h1>Movie Search</h1>
+				<div id='title'>
+					<a href=''>
+						<span className="glyphicon glyphicon-film"></span>
+						<h1>Movie Search</h1>
+					</a>
 				</div>
 			);
 		}
 	});
 
 	// card class for each movie poster
-	var Card = React.createClass({
+	var RecentCard = React.createClass({
 
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
@@ -35,22 +37,75 @@
 			);
 		}
 	});
+	
+		var DetailsCard = React.createClass({
+
+		render() {
+			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
+
+			// change to U.S. date string
+			var movieYear = this.props.release.slice(0,5);
+			var releaseDate = this.props.release.slice(5) + "-" + movieYear.slice(0,4);
+			
+			//change runtime from total minutes to hours and minutes
+			var totalRuntime = this.props.runtime;
+			var hours = Math.floor(totalRuntime / 60);
+			var minutes = totalRuntime % 60;
+
+			return (
+				<div id='card'>
+					<img src={imgSrc + this.props.poster} />
+					<div id="content-align">
+						<h3>{this.props.title}</h3>
+						<p>Release Date: {releaseDate}</p>
+						<p>Rated: {this.props.rating}</p>
+						<div>Genre: {this.props.genres.map(function(each, key) {
+												return <Genre genre={each.name} key={key}/>;
+											})}</div>
+						<p>Runtime: {hours}h {minutes}m</p>
+						<p id="overview">{this.props.overview}</p>
+					</div>
+				</div>
+			);
+		}
+	});
+
+var Genre = React.createClass({
+	render() {
+		return (
+			<p className="genre">{this.props.genre}</p>
+		)
+	}
+})
 
 
 	// create form
 	var Search = React.createClass({
 		getInitialState: function() {
 			return {
-				movie: null
+				movieid: null,
+				moviedetails: null
 			}
 		},
 
 		handleSubmit: function(e) {
 			e.preventDefault();
 			var searchInput = this.refs.search.value;
+			
+			//get id for movie details
 			$.get('https://api.themoviedb.org/3/search/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4&query=' + searchInput, (data) => {
-				this.setState({movie: data.results[0]});
+				this.setState({movieid: data.results[0].id});
+				
+				// get movie details
+				$.get('https://api.themoviedb.org/3/movie/'+ this.state.movieid +'?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&append_to_response=credits,releases', (details) => {
+					this.setState({moviedetails: details});
+					console.log(this.state.moviedetails);
+				});
 			});
+			
+			if (timer) {
+				clearTimeout(timer);
+			}
 			this.refs.search.value = "";
 		},
 
@@ -61,8 +116,8 @@
 						<input ref='search' />
 						<button onClick={this.props.onclick}>Search</button>
 					</form>
-					{this.state.movie && 
-						<Card poster={this.state.movie.poster_path} title={this.state.movie.title} overview={this.state.movie.overview} release={this.state.movie.release_date} />
+					{this.state.moviedetails && 
+						<DetailsCard poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title} overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date} rating={this.state.moviedetails.releases.countries[11].certification} runtime={this.state.moviedetails.runtime} genres={this.state.moviedetails.genres} />
 					}
 				</div>
 			);
@@ -124,7 +179,7 @@
 			return (
 				<div id='slideshow'>
 					<h2>Recent Movies</h2>
-					<Card poster={movie.poster_path} title={movie.title} overview={movie.overview} release={movie.release_date} />
+					<RecentCard poster={movie.poster_path} title={movie.title} overview={movie.overview} release={movie.release_date} />
 					<SlideshowControls prevMovie={this.Previous} nextMovie={this.Next} />
 				</div>
 			)}
