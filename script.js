@@ -18,33 +18,35 @@
 	
 	// card class for each movie poster
 	var RecentCard = React.createClass({
-
+		
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
-
+			
 			// change to U.S. date string
 			var movieYear = this.props.release.slice(0,5);
 			var releaseDate = this.props.release.slice(5) + "-" + movieYear.slice(0,4);
-
+			
 			return (
 				<div id='card'>
-					<img src={imgSrc + this.props.poster} />
-					<div id="content-align">
-						<h3>{this.props.title}</h3>
-						<p>Release Date: {releaseDate}</p>
-						<p id="overview">{this.props.overview}</p>
+					<div id="content">
+						<img src={imgSrc + this.props.poster} />
+						<div id="content-align">
+							<h3>{this.props.title}</h3>
+							<p>Release Date: {releaseDate}</p>
+							<p id="overview">{this.props.overview}</p>
+						</div>
 					</div>
 				</div>
 			);
 		}
 	});
-
+	
 // card class for movie details
 	var DetailsCard = React.createClass({
-
+		
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
-
+			
 			// change to U.S. date string
 			var movieYear = this.props.release.slice(0,5);
 			var releaseDate = this.props.release.slice(5) + "-" + movieYear.slice(0,4);
@@ -53,34 +55,54 @@
 			var totalRuntime = this.props.runtime;
 			var hours = Math.floor(totalRuntime / 60);
 			var minutes = totalRuntime % 60;
-
+			
+			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
+			
 			return (
 				<div id='card'>
-					<img src={imgSrc + this.props.poster} />
-					<div id="content-align">
-						<h3>{this.props.title}</h3>
-						<p>Release Date: {releaseDate}</p>
-						<p>Rated: {this.props.rating}</p>
-						<div>Genre: {this.props.genres.map(function(each, key) {
-												return <Genre genre={each.name} key={key}/>;
-											})}</div>
-						<p>Runtime: {hours}h {minutes}m</p>
-						<p id="overview">{this.props.overview}</p>
+					<div id="content">
+						<img src={imgSrc + this.props.poster} />
+						<div id="content-align">
+							<h3>{this.props.title}</h3>
+							<p>Release Date: {releaseDate}</p>
+							<p>Rated: {this.props.rating}</p>
+							<div>Genre: {this.props.genres.map(function(each, key) {
+													return <Genre genre={each.name} key={key}/>;
+													})}
+							</div>
+							<p>Runtime: {hours}h {minutes}m</p>
+							<p id="overview">{this.props.overview}</p>
+						</div>
+					</div>
+					<div id="cast">
+						<h4>Top Billed Cast</h4>
+							{this.props.cast.map(function(each, key) {
+								if (key < 6) {
+									return (
+										<div id="actorsStyle" key={key}>
+											<div id="actors">
+												<img id="actorPic" src={imgSrc + each.profile_path} />
+											</div>
+											<p>{each.name}</p>
+											<p>{each.character}</p>
+										</div>
+									)
+								}
+							})}
 					</div>
 				</div>
 			);
 		}
 	});
 	
-var Genre = React.createClass({
-	render() {
-		return (
-			<p className="genre">{this.props.genre}</p>
-		)
-	}
-})
-
-
+	var Genre = React.createClass({
+		render() {
+			return (
+				<p className="genre">{this.props.genre}</p>
+			)
+		}
+	});
+	
 	// create form
 	var Search = React.createClass({
 		getInitialState: function() {
@@ -90,7 +112,7 @@ var Genre = React.createClass({
 				ratings: null
 			}
 		},
-
+		
 		handleSubmit: function(e) {
 			e.preventDefault();
 			var searchInput = this.refs.search.value;
@@ -116,7 +138,7 @@ var Genre = React.createClass({
 			}
 			this.refs.search.value = "";
 		},
-
+		
 		render() {
 			return (
 				<div id="search">
@@ -125,14 +147,13 @@ var Genre = React.createClass({
 						<button onClick={this.props.onclick}>Search</button>
 					</form>
 					{this.state.moviedetails && 
-						<DetailsCard poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title} overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date} rating={this.state.ratings} runtime={this.state.moviedetails.runtime} genres={this.state.moviedetails.genres} />
+						<DetailsCard poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title} overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date} rating={this.state.ratings} runtime={this.state.moviedetails.runtime} genres={this.state.moviedetails.genres} cast={this.state.moviedetails.credits.cast} />
 					}
 				</div>
 			);
 		}
 	});
-
-
+	
 	// class for recent movies
 	var RecentMovies = React.createClass({
 
@@ -142,7 +163,7 @@ var Genre = React.createClass({
 				counter: 0
 			};
 		},
-
+		
 		// slideshow control functions
 		Previous: function() {
 			if (timer) {
@@ -159,20 +180,20 @@ var Genre = React.createClass({
 			if (timer) {
 				clearTimeout(timer);
 			}
-
+			
 			if (this.state.counter == this.state.movieList.length - 1) {
 				this.setState({'counter': 0});
 			} else {
 				this.setState({'counter': this.state.counter += 1});
 			}
 		},
-
+		
 		componentWillMount: function() {
 			$.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1', (data) => {
 				this.setState({'movieList': data.results});
 			});
 		},
-
+		
 		render() {
 			var movie = this.state.movieList[this.state.counter];
 			
@@ -192,8 +213,7 @@ var Genre = React.createClass({
 				</div>
 			)}
 	});
-
-  
+	
 	// recent movie slideshow controls
 	var SlideshowControls = React.createClass({
 		render() {
@@ -205,8 +225,7 @@ var Genre = React.createClass({
 			)
 		}
 	});
-
-
+	
 	var Main = React.createClass({
 		getInitialState: function(){
 			return {
