@@ -15,7 +15,7 @@ body {
 	text-decoration: none;
 }
 #title a .glyphicon:before {
-  vertical-align: -22px;
+	vertical-align: -22px;
 }
 #title a .glyphicon {
 	font-size: 2.1em;
@@ -48,7 +48,7 @@ body {
 }
 #card > #content-align {
 	padding:0 2%;
-	width:50%;
+	width:80%;
 }
 #card h3 {
 	font-size: 2rem;

@@ -14,7 +14,8 @@
 			);
 		}
 	});
-
+	
+	
 	// card class for each movie poster
 	var RecentCard = React.createClass({
 
@@ -37,8 +38,9 @@
 			);
 		}
 	});
-	
-		var DetailsCard = React.createClass({
+
+// card class for movie details
+	var DetailsCard = React.createClass({
 
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
@@ -69,7 +71,7 @@
 			);
 		}
 	});
-
+	
 var Genre = React.createClass({
 	render() {
 		return (
@@ -84,7 +86,8 @@ var Genre = React.createClass({
 		getInitialState: function() {
 			return {
 				movieid: null,
-				moviedetails: null
+				moviedetails: null,
+				ratings: null
 			}
 		},
 
@@ -100,6 +103,11 @@ var Genre = React.createClass({
 				$.get('https://api.themoviedb.org/3/movie/'+ this.state.movieid +'?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&append_to_response=credits,releases', (details) => {
 					this.setState({moviedetails: details});
 					console.log(this.state.moviedetails);
+					for (var i = 0, j =this.state.moviedetails.releases.countries.length; i < j; i++) {
+						if (this.state.moviedetails.releases.countries[i].iso_3166_1 == "US") {
+						this.setState({ratings: this.state.moviedetails.releases.countries[i].certification})
+						}
+					}
 				});
 			});
 			
@@ -117,7 +125,7 @@ var Genre = React.createClass({
 						<button onClick={this.props.onclick}>Search</button>
 					</form>
 					{this.state.moviedetails && 
-						<DetailsCard poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title} overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date} rating={this.state.moviedetails.releases.countries[11].certification} runtime={this.state.moviedetails.runtime} genres={this.state.moviedetails.genres} />
+						<DetailsCard poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title} overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date} rating={this.state.ratings} runtime={this.state.moviedetails.runtime} genres={this.state.moviedetails.genres} />
 					}
 				</div>
 			);
