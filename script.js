@@ -18,6 +18,12 @@
 	
 	// card class for each movie poster
 	var RecentCard = React.createClass({
+		handleClick: function() {
+			var title = this.props.title;
+			var searchInput = document.getElementById('searchInput');
+			searchInput.value = title;
+			$('#searchButton').click();
+		},
 		
 		render() {
 			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
@@ -34,6 +40,7 @@
 							<h3>{this.props.title}</h3>
 							<p>Release Date: {releaseDate}</p>
 							<p id="overview">{this.props.overview}</p>
+							<a id="showMore" onClick={this.handleClick}>Show More</a>
 						</div>
 					</div>
 				</div>
@@ -41,12 +48,11 @@
 		}
 	});
 	
+	
 // card class for movie details
 	var DetailsCard = React.createClass({
 		
 		render() {
-			var imgSrc = 'https://image.tmdb.org/t/p/w500/';
-			
 			// change to U.S. date string
 			var movieYear = this.props.release.slice(0,5);
 			var releaseDate = this.props.release.slice(5) + "-" + movieYear.slice(0,4);
@@ -71,6 +77,7 @@
 													})}
 							</div>
 							<p>Runtime: {hours}h {minutes}m</p>
+							<h4>Overview</h4>
 							<p id="overview">{this.props.overview}</p>
 						</div>
 					</div>
@@ -95,6 +102,7 @@
 		}
 	});
 	
+
 	var Genre = React.createClass({
 		render() {
 			return (
@@ -103,6 +111,7 @@
 		}
 	});
 	
+
 	// create form
 	var Search = React.createClass({
 		getInitialState: function() {
@@ -116,6 +125,9 @@
 		handleSubmit: function(e) {
 			e.preventDefault();
 			var searchInput = this.refs.search.value;
+			if (searchInput == "") {
+				return
+			}
 			
 			//get id for movie details
 			$.get('https://api.themoviedb.org/3/search/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4&query=' + searchInput, (data) => {
@@ -124,10 +136,9 @@
 				// get movie details
 				$.get('https://api.themoviedb.org/3/movie/'+ this.state.movieid +'?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&append_to_response=credits,releases', (details) => {
 					this.setState({moviedetails: details});
-					console.log(this.state.moviedetails);
-					for (var i = 0, j =this.state.moviedetails.releases.countries.length; i < j; i++) {
+					for (var i = 0, j = this.state.moviedetails.releases.countries.length; i < j; i++) {
 						if (this.state.moviedetails.releases.countries[i].iso_3166_1 == "US") {
-						this.setState({ratings: this.state.moviedetails.releases.countries[i].certification})
+							this.setState({ratings: this.state.moviedetails.releases.countries[i].certification})
 						}
 					}
 				});
@@ -142,9 +153,9 @@
 		render() {
 			return (
 				<div id="search">
-					<form onSubmit={this.handleSubmit}>
-						<input ref='search' />
-						<button onClick={this.props.onclick}>Search</button>
+					<form id="searchForm" onSubmit={this.handleSubmit}>
+						<input ref='search' id="searchInput" />
+						<button onClick={this.props.onclick} id="searchButton">Search</button>
 					</form>
 					{this.state.moviedetails && 
 						<DetailsCard poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title} overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date} rating={this.state.ratings} runtime={this.state.moviedetails.runtime} genres={this.state.moviedetails.genres} cast={this.state.moviedetails.credits.cast} />
@@ -154,6 +165,7 @@
 		}
 	});
 	
+
 	// class for recent movies
 	var RecentMovies = React.createClass({
 
@@ -188,7 +200,7 @@
 			}
 		},
 		
-		componentWillMount: function() {
+		componentDidMount: function() {
 			$.get('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1', (data) => {
 				this.setState({'movieList': data.results});
 			});
@@ -214,6 +226,7 @@
 			)}
 	});
 	
+
 	// recent movie slideshow controls
 	var SlideshowControls = React.createClass({
 		render() {
@@ -226,6 +239,7 @@
 		}
 	});
 	
+
 	var Main = React.createClass({
 		getInitialState: function(){
 			return {
@@ -235,14 +249,11 @@
 		handleRecent: function() {
 			this.setState({displayRecent: false});
 		},
-		addCard: function(searchTitle) {
-			this.setState({title: searchTitle});
-		},
 		render() {
 			return (
 				<div id='main'>
           <Header />
-					<Search addCard={this.addCard} onclick={this.handleRecent} />
+					<Search onclick={this.handleRecent} />
 					{this.state.displayRecent ? <RecentMovies /> : null}
 				</div>
 			);
