@@ -1,0 +1,147 @@
+body {
+	background-color:#ccc;
+	font-family:sans-serif;
+	margin:auto !important;
+	width:90%;
+}
+#title {
+	width:265px;
+}
+#title a{
+	color:#000;
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+	text-decoration:none;
+}
+#title a .glyphicon:before {
+	vertical-align:-22px;
+}
+#title a .glyphicon {
+	font-size:2.1em;
+	margin:0 0.5% 0 0;
+}
+
+#search {
+	margin:2% 0;
+}
+
+.genre {
+	background-color:#000;
+	border-radius:3px;
+	color:#fff;
+	display:inline-block;
+	padding:0 4px;
+	margin:0 3px 1% 0;
+}
+
+#card {
+	letter-spacing:1px;
+	margin:2% 0;
+	width:100%;
+}
+#content {
+	display:-webkit-box;
+	display:-ms-flexbox;
+	display:flex;
+}
+#content > img {
+	height:325px;
+	width:215px;
+}
+#content > #content-align {
+	padding:0 2%;
+	width:80%;
+}
+
+#showMore {
+	background-color:#fff;
+	color:#000;
+	padding:5px 10px;
+	text-decoration:none;
+}
+#showMore:hover {
+	background-color:#000;
+	color:#fff;
+	cursor:pointer;
+}
+#card h3 {
+	font-size:2.75rem;
+	margin:0;
+}
+#card #overview {
+	font-size:1.5rem;
+}
+#cast {
+	height: auto;
+	margin:0 0 2% 0;
+}
+#card h4 {
+	font-size:2.2rem;
+	margin:3% 0 0 0;
+}
+
+#cast h4 {
+	margin:3% 0 1% 0;
+}
+#actorsStyle {
+	display:inline-block;
+	height:187px;
+	margin:0 auto;
+	min-width:19%;
+}
+#actors {
+	border:2px solid #fff;
+	border-radius:50%;
+	height:150px;
+	margin:0 auto;
+	position:relative;
+	overflow:hidden;
+	width:150px;
+}
+#actorPic {
+	height:auto;
+	position:absolute;
+	top:-20px;
+	width:145px;
+}
+#actorsStyle p {
+	text-align:center;
+}
+#actorsStyle p:first-of-type {
+	font-weight:600;
+}
+#actorsStyle p:last-of-type {
+	font-size:12px;
+	letter-spacing:0;
+	margin:-10px 0 0 0;
+}
+
+#slideshow {
+	background-color:#888;
+	border-radius:10px;
+	color:#fff;
+	padding:2%;
+}
+#slideshow > h2 {
+	margin:0;
+}
+#slideshow button {
+	color:#000;
+}
+
+
+@media (max-width:960px) {
+	#content {
+		display:block;
+	}
+
+	#content > #content-align {
+		margin:2% 0 0 0;
+		padding:0;
+		width:100%;
+	}
+	#cast {
+		margin:5% 0 0 0;
+	}
+}
