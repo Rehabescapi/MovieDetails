@@ -1,8 +1,8 @@
 /* eslint-disable */
+import React, {Component} from 'react';
 import Genre from './Genre';
-import React from 'react';
 
-var DetailsCard = React.createClass({
+export default class DetailsCard extends Component {
 	render() {
 		// change to U.S. date string
 		var movieYear = this.props.release.slice(0,5);
@@ -16,7 +16,7 @@ var DetailsCard = React.createClass({
 		var imgSrc = 'https://image.tmdb.org/t/p/w500/';
 
 		return (
-			<div id='card'>
+			<div id="detailsCard">
 				<div id="content">
 					<img src={imgSrc + this.props.poster} alt="movie poster" />
 					<div id="content-align">
@@ -51,6 +51,4 @@ var DetailsCard = React.createClass({
 			</div>
 		);
 	}
-});
-
-export default DetailsCard;
+};

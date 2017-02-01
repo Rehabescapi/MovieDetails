@@ -1,18 +1,18 @@
 import DetailsCard from './DetailsCard';
-import timer from './RecentMovies';
 import 'whatwg-fetch';
-import React from 'react';
+import React, { Component } from 'react';
 
-var Search = React.createClass({
-	getInitialState: function() {
-		return {
+export default class Search extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
 			movieid: null,
 			moviedetails: null,
 			ratings: null
 		}
-	},
+	}
 
-	handleSubmit: function(e) {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		var searchInput = this.refs.search.value;
 
@@ -30,12 +30,8 @@ var Search = React.createClass({
 											}
 										})
 			)
-
-		if (timer) {
-			clearTimeout(timer);
-		}
 		this.refs.search.value = "";
-},
+}
 
 	render() {
 		return (
@@ -50,6 +46,4 @@ var Search = React.createClass({
 			</div>
 		);
 	}
-});
-
-export default Search;
+};

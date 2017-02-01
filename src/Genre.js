@@ -1,11 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-var Genre = React.createClass({
-  render() {
-    return (
-      <p className="genre">{this.props.genre}</p>
-    )
-  }
-});
-
-export default Genre;
+export default class Genre extends Component {
+	render() {
+		return (
+			<p className="genre">{this.props.genre}</p>
+		)
+	}
+};

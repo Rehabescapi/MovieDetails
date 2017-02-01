@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-var Header = React.createClass({
+export default class Header extends Component {
 	render() {
 		return (
 			<div id='title'>
@@ -11,6 +11,4 @@ var Header = React.createClass({
 			</div>
 		);
 	}
-});
-
-  export default Header;
+};
