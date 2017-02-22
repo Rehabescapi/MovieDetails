@@ -11,7 +11,8 @@ export default class RecentMovies extends Component {
 	}
 
 	componentWillMount() {
-		fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=c4caddf3d2f1e3a21633c2611179f2e4&language=en-US&page=1')
+		fetch('https://api.themoviedb.org/3/discover/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4' +
+		'&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&primary_release_date.lte=2016-12-31&with_genres=18')
 			.then( (response) => response.json() )
 			.then( (data) => this.setState({'movieList': data.results}) );
 	}
@@ -22,10 +23,11 @@ export default class RecentMovies extends Component {
 		if(!movies) {
 			return null;
 		}
+
 		return (
 			<div id='list'>
-				<h2>Recent Movies</h2>
-				<MovieList movies={movies} ListType='recentList'/>
+				<h2>Drama Movies</h2>
+				<MovieList movies={movies} ListType='dramaList'	/>
 			</div>
 		)}
 };
