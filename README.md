@@ -1,4 +1,5 @@
 #React Movie Search
 
 current: dev build
-to start: ```npm start
+
+to start: `npm start
