@@ -8,6 +8,11 @@ import ActionMovies from './ActionMovies';
 import ComedyMovies from './ComedyMovies';
 import RomanceMovies from './RomanceMovies';
 import DramaMovies from './DramaMovies';
+import AdventureMovies from './AdventureMovies';
+import FantasyMovies from './FantasyMovies';
+import CrimeMovies from './CrimeMovies';
+import SciFiMovies from './SciFiMovies';
+import FamilyMovies from './FamilyMovies';
 
 export default class Main extends Component {
 	constructor(props) {
@@ -31,6 +36,11 @@ export default class Main extends Component {
 				{this.state.displayMovies ? <ComedyMovies /> : null}
 				{this.state.displayMovies ? <RomanceMovies /> : null}
 				{this.state.displayMovies ? <DramaMovies /> : null}
+				{this.state.displayMovies ? <AdventureMovies /> : null}
+				{this.state.displayMovies ? <FantasyMovies /> : null}
+				{this.state.displayMovies ? <CrimeMovies /> : null}
+				{this.state.displayMovies ? <SciFiMovies /> : null}
+				{this.state.displayMovies ? <FamilyMovies /> : null}
 			</div>
 		);
 	}

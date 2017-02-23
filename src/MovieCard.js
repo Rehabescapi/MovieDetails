@@ -13,7 +13,7 @@ export default class RecentCard extends Component {
 		const imgSrc = 'https://image.tmdb.org/t/p/w500/';
 
 		const style = {
-			backgroundImage:'url('+imgSrc + this.props.backdrop+')'
+			backgroundImage:'url('+ imgSrc + this.props.backdrop +')'
 		}
 
 		return (

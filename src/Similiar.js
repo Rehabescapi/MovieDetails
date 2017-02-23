@@ -26,12 +26,16 @@ export default class Similiar extends Component {
 		this.setState({'similiarList':sliced});
 
 		list = this.state.similiarList.map( (each, index) => {
+			var overview = "";
+			if (each.overview) {
+				overview = each.overview.slice(0,150) + '...';
+			}
 			return (
 				<div className='similarCard' key={index} onClick={this.handleClick}>
 					<img src={imagePath + each.poster_path} alt={each.title + ' poster'} />
 					<div className="similiarDetails">
 						<p>{each.title}</p>
-						<p>{each.overview.slice(0,150) + '...'}</p>
+						<p>{overview}</p>
 					</div>
 				</div>
 			)
@@ -50,10 +54,14 @@ export default class Similiar extends Component {
 	}
 
 	handleClick = (e) => {
+		var title = e.target.childNodes[0].textContent;
+		var searchInput = document.getElementById('searchInput');
+		searchInput.value = title;
+		document.getElementById('searchButton').click();
 	}
 
 	render() {
-		if (list.length > 1) {
+		if (list.length > 0) {
 			return (
 				<SimilarCard list={list} />
 			)
