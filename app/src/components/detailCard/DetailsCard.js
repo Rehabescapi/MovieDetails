@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Genre from './Genre'
+import Genre from '../../Genre/'
 import './details.css'
 
 export default class DetailsCard extends Component {

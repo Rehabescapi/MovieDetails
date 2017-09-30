@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './similiar.css'
+import {similar, similarCard, similarDetails} from './similiar.css'
 import 'whatwg-fetch'
 
 var list = []
@@ -31,9 +31,9 @@ export default class Similiar extends Component {
         overview = each.overview.slice(0, 150) + '...'
       }
       return (
-<div className='similarCard' key={index} onClick={this.handleClick}>
+<div className={similarCard} key={index} onClick={this.handleClick}>
 <img src={imagePath + each.poster_path} alt={each.title + ' poster'} />
-<div className='similiarDetails'>
+<div className={similiarDetails}>
 <p>{each.title}</p>
 <p>{overview}</p>
 </div>
@@ -76,7 +76,7 @@ class SimilarCard extends Component {
     return (
 <div>
 <h4>Similiar Movies</h4>
-<div className='similar'>
+<div className={similar}>
 {this.props.list}
 </div>
 </div>

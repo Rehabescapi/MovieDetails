@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import './genre.css'
+import {genre} from './genre.css'
 
 export default class Genre extends Component {
   render () {
     return (
-<p className='genre'>{this.props.genre}</p>
+<p className={genre}>{this.props.genre}</p>
 )
   }
 }

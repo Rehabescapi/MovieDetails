@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import 'whatwg-fetch'
-import DetailsCard from './DetailsCard'
-import Similiar from './Similiar'
-import './search.css'
+import DetailsCard from '../detailCard/DetailsCard'
+import Similiar from '../../Similiar'
+import {search} from './search.css'
 
 export default class Search extends Component {
   constructor (props) {
@@ -60,20 +60,20 @@ export default class Search extends Component {
 
   render () {
     return (
-<div id='search'>
-<form id='searchForm' onSubmit={this.handleSubmit}>
-<input value={this.state.inputText} id='searchInput' ref='searchInput'
-placeholder='Enter Movie Title Here' onChange={this.updateInput}/>
-<button onClick={this.props.onclick} id='searchButton'>Search</button>
-</form>
-{this.state.moviedetails &&
-<DetailsCard movieId={this.state.movieId} poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title}
-overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date}
-ratings={this.state.ratings} runtime={this.state.moviedetails.runtime}
-genres={this.state.moviedetails.genres} cast={this.state.moviedetails.credits.cast} />
-}
-{this.state.movieId && <Similiar movieId={this.state.movieId} />}
-</div>
+    <div className={search}>
+      <form className='searchForm' onSubmit={this.handleSubmit}>
+        <input value={this.state.inputText} className='searchInput' ref='searchInput'
+        placeholder='Enter Movie Title Here' onChange={this.updateInput}/>
+        <button onClick={this.props.onclick} className='searchButton'>Search</button>
+      </form>
+      {this.state.moviedetails &&
+        <DetailsCard movieId={this.state.movieId} poster={this.state.moviedetails.poster_path} title={this.state.moviedetails.title}
+        overview={this.state.moviedetails.overview} release={this.state.moviedetails.release_date}
+        ratings={this.state.ratings} runtime={this.state.moviedetails.runtime}
+        genres={this.state.moviedetails.genres} cast={this.state.moviedetails.credits.cast} />
+      }
+      {this.state.movieId && <Similiar movieId={this.state.movieId} />}
+    </div>
 )
   }
 }

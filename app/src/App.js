@@ -1,8 +1,8 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import App from './App.css';
+
 import Header from './components/header/Header';
-import Search from './Search';
+import Search from './components/search/Search';
 import * as Genre from './Genre/index'
 
 export default class Main extends Component {
@@ -23,7 +23,7 @@ export default class Main extends Component {
 				<Header />
 				<Search onclick={this.handleRecent} />
 				{this.state.displayMovies ? <Genre.RecentMovies /> : null}
-				
+				{this.state.displayMovies? <Genre.ActionMovies/>:null}
 			</div>
 		);
 	}

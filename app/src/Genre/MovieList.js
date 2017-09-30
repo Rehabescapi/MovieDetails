@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './movielist.css'
+import {carouselButtons, movieList} from './movielist.css'
 import MovieCard from '../components/movieCard/MovieCard'
 
 export default class MovieList extends Component {
@@ -38,7 +38,7 @@ export default class MovieList extends Component {
     }
     return (
 <div>
-<div id={this.state.el} className='movieList' style={styleLeft}>
+<div id={this.state.el} className={movieList} style={styleLeft}>
 {movies.map((each, key) => {
   return (
 <MovieCard backdrop={each.backdrop_path} style={innerHeight = 50} poster={each.poster_path} title={each.title}
@@ -46,7 +46,7 @@ overview={each.overview} release={each.release_date} key={key} />
 )
 })}
 </div>
-<div className='carouselButtons'>
+<div className={carouselButtons}>
 <button id={this.state.el + 'LeftButton'} onClick={this.moveLeft}>&#x3c;</button>
 <button onClick={this.moveRight}>&#x3e;</button>
 </div>
