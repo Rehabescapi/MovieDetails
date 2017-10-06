@@ -33,43 +33,43 @@ class Details extends Component {
   render () {
     const imgSrc = 'https://image.tmdb.org/t/p/w500/'
     return (
-<div id='detailsCard'>
-<div id='content'>
-<img src={imgSrc + this.props.poster} alt='movie poster' />
-<div id='content-align'>
-<h3>{this.props.title}</h3>
-<p>{'Release Date: '}{this.props.releaseDate}</p>
-<p>{'Rated: '}{this.props.ratings}</p>
-<div>{'Genre: '}{this.props.genres.map(function (each, key) {
-  return <Genre genre={each.name} key={key}/>
-})}
-</div>
-<p>{'Runtime: '}{this.props.hours}{'h '}{this.props.minutes}{'m'}</p>
-<h4>{'Overview'}</h4>
-<p id='overview'>{this.props.overview}</p>
-</div>
-</div>
-<div id='cast'>
-<h4>{'Top Billed Cast'}</h4>
-{this.props.cast.map(function (each, key) {
-  var characterNames = []
-  if (each.character.length > 40) {
-    characterNames.push(each.character.substr(0, 40) + '...')
-  } else {
-    characterNames.push(each.character)
-  }
-  return (
-<div id='actorsStyle' key={key}>
-<div id='actors'>
-<img id='actorPic' src={imgSrc + each.profile_path} alt={'picture of ' + each.name} />
-</div>
-<p>{each.name}</p>
-<p>{characterNames}</p>
-</div>
-)
-})}
-</div>
-</div>
+      <div id='detailsCard'>
+        <div id='content'>
+          <img src={imgSrc + this.props.poster} alt='movie poster' />
+          <div id='content-align'>
+            <h3>{this.props.title}</h3>
+            <p>{'Release Date: '}{this.props.releaseDate}</p>
+            <p>{'Rated: '}{this.props.ratings}</p>
+            <div>{'Genre: '}{this.props.genres.map(function (each, key) {
+              return <Genre genre={each.name} key={key}/>
+            })}
+            </div>
+            <p>{'Runtime: '}{this.props.hours}{'h '}{this.props.minutes}{'m'}</p>
+            <h4>{'Overview'}</h4>
+            <p id='overview'>{this.props.overview}</p>
+            </div>
+          </div>
+          <div id='cast'>
+          <h4>{'Top Billed Cast'}</h4>
+          {this.props.cast.map(function (each, key) {
+            var characterNames = []
+            if (each.character.length > 40) {
+              characterNames.push(each.character.substr(0, 40) + '...')
+            } else {
+              characterNames.push(each.character)
+            }
+            return (
+          <div id='actorsStyle' key={key}>
+          <div id='actors'>
+          <img id='actorPic' src={imgSrc + each.profile_path} alt={'picture of ' + each.name} />
+          </div>
+          <p>{each.name}</p>
+          <p>{characterNames}</p>
+          </div>
+          )
+          })}
+        </div>
+      </div>
 )
   }
 }

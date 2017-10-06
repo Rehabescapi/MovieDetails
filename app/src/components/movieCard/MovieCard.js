@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import {cardTitle, card} from './moviecard.css';
 
-export default class RecentCard extends Component {
+export default class MovieCard extends Component {
 	handleClick = () => {
 		var title = this.props.title;
-		var searchInput = document.getElementById('searchInput');
 		searchInput.value = title;
-		document.getElementById('searchButton').click();
 	}
 
 	render() {

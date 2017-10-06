@@ -5,6 +5,7 @@ import MovieCard from '../components/movieCard/MovieCard'
 export default class MovieList extends Component {
   constructor (props) {
     super(props)
+    console.log(props.ListType)
     this.state = {
       el: props.ListType,
     }
@@ -37,20 +38,19 @@ export default class MovieList extends Component {
       left: '0px',
     }
     return (
-<div>
-<div id={this.state.el} className={movieList} style={styleLeft}>
-{movies.map((each, key) => {
-  return (
-<MovieCard backdrop={each.backdrop_path} style={innerHeight = 50} poster={each.poster_path} title={each.title}
-overview={each.overview} release={each.release_date} key={key} />
-)
-})}
-</div>
-<div className={carouselButtons}>
-<button id={this.state.el + 'LeftButton'} onClick={this.moveLeft}>&#x3c;</button>
-<button onClick={this.moveRight}>&#x3e;</button>
-</div>
-</div>
+          <div>
+            <div id={this.state.el} className={movieList} style={styleLeft}>
+            {movies.map((each, key) => {
+              return (
+                <MovieCard backdrop={each.backdrop_path} style={innerHeight = 50} poster={each.poster_path} title={each.title}
+                 overview={each.overview} release={each.release_date} key={key} />
+              )})}
+            </div>
+            <div className={carouselButtons}>
+              <button id={this.state.el + 'LeftButton'} onClick={this.moveLeft}>&#x3c;</button>
+              <button onClick={this.moveRight}>&#x3e;</button>
+            </div>
+          </div>
 )
   }
 }
