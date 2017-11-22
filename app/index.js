@@ -8,7 +8,7 @@ import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import thunk from 'redux-thunk'
 
 
-const store =  createStore(combineReducers(reducers), compose(
+const store =  createStore( compose(
   applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : (f) => f))
 
