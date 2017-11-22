@@ -6,7 +6,7 @@ import {createStore, applyMiddleware, compose, combineReducers} from 'redux'
 
 
 import thunk from 'redux-thunk'
-
+import App from './App'
 
 const store =  createStore( compose(
   applyMiddleware(thunk),
@@ -16,7 +16,7 @@ const store =  createStore( compose(
 
 ReactDOM.render(
   <Provider store={store}>
-    <div > {'Hello World'}</div>
+   <App/>
   </Provider>,
   document.getElementById('root'),
 );

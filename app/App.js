@@ -9,15 +9,13 @@ import {
 } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import {Routes} from './config/routes'
 
-
-import Main from './Main'
-import {DetailsCard, PageNotFound, NerdPage} from './components'
 
 class App extends Component {
-    render (){
+    render (){ 
         return (
-          
+          <Routes/>
         )
     }
 }

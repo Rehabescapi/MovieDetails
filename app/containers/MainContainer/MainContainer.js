@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 
 /* eslint-disable */
-
+import { HeaderComponent} from '../../components'
 
  class Main extends Component {
 	constructor(props) {

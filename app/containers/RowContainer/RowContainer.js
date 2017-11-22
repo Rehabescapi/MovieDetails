@@ -1,6 +1,6 @@
 import React, {Component } from 'react'
 
-
+import { connect } from 'react-redux'
 class RowContainer extends Component {
 
     constructor ( props) {

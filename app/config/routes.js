@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 
 
-import {MainContainer, RowContainer} from 'containers'
-import {PageNotFound} from 'components'
+import {MainContainer, RowContainer} from '../containers'
+import {PageNotFound} from '../components'
 
 export default class Routes extends Component {
 
@@ -11,7 +11,7 @@ export default class Routes extends Component {
     render()
     {
         return 
-        <Router>
+        (<Router>
             
                 <Switch >
                     <Route path ='/' Component= {MainContainer} />
@@ -20,6 +20,6 @@ export default class Routes extends Component {
                 </Switch>
             
 
-        </Router>
+        </Router>)
     }
 }
