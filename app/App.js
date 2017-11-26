@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
+import ReactDOM from 'react-dom'
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import {Routes} from './config/routes'
 
+import { HeaderComponent as Header } from 'components'
+import { MainContainer} from 'containers'
 
-class App extends Component {
-    render (){ 
-        return (
-          <Routes/>
-        )
-    }
-}
+const App = () => (
+  <div>
+    <Header />
+    <MainContainer />
+  </div>
+)
 
-export default App;
+export default App

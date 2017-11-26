@@ -18,6 +18,7 @@ export const genre = {
 }
 
 export  function getQuery(params){
+    console.log(params)
     return config.apiQuery + config.searchParams + genre[params];
 }
 

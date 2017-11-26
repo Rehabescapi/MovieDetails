@@ -2,24 +2,20 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 
 
-import {MainContainer, RowContainer} from '../containers'
-import {PageNotFound} from '../components'
+import {MainContainer, RowContainer, DetailContainer, HomeContainer} from 'containers'
+import {PageNotFound} from 'components'
 
-export default class Routes extends Component {
+ const GetRoutes = () => (
 
-
-    render()
-    {
-        return 
-        (<Router>
-            
+        <Router>  
                 <Switch >
-                    <Route path ='/' Component= {MainContainer} />
+                    <Route exact path ='/' component= {PageNotFound} />
                     <Route path ='/movie/:movieId' component ={DetailContainer}/>
-                    <Route component={NotFoundContainer}/> 
+                    <Route component={PageNotFound}/> 
                 </Switch>
-            
+           
 
-        </Router>)
-    }
-}
+        </Router>
+        
+)
+export default GetRoutes

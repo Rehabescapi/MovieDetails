@@ -29,7 +29,17 @@ const config = {
     ]
   },
   resolve: {
-    modules: [ path.resolve('./app'), 'node_modules']
+    modules: [ path.resolve('./app'), 'node_modules'],
+    root: path.resolve('./app'),
+    extensions: [
+      '',
+      '.webpack.js',
+      '.web.js',
+      '.tsx',
+      '.ts',
+      '.js',
+      '.json',
+    ],
   }
 }
 

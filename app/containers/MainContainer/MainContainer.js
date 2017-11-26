@@ -1,14 +1,20 @@
 import React , {Component} from 'react'
 import PropTypes from 'prop-types'
 
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+
+
+import { RowContainer, DetailContainer, HomeContainer} from 'containers'
+import {PageNotFound, HeaderComponent} from 'components'
 
 
 /* eslint-disable */
-import { HeaderComponent} from '../../components'
 
- class Main extends Component {
+import {GetRoutes}  from 'config/constants'
+ class MainContainer extends Component {
 	constructor(props) {
 		super(props);
+		
 		this.state = {
 			displayMovies: true
 		}
@@ -17,26 +23,31 @@ import { HeaderComponent} from '../../components'
 	handleRecent = () => {
 		this.setState({displayMovies: false});
 	}
-
+	
 	render() {
 		return (
 			<div id='main'>
-				<Header />
-				<div className='innerContainer'>
-				{this.state.displayMovies ? <Genre.RecentMovies /> : null}
+			
+			<Router>  
+                <Switch >
+                    <Route exact path ='/' component= {HomeContainer} />
+                    <Route path ='/movie/:movieId' component ={DetailContainer}/>
+                    <Route component={PageNotFound}/> 
+                </Switch>
+           
 
-				</div>
+        </Router>
 			</div>
 		);
 	}
 };
 
-Main.propTypes = {
+MainContainer.propTypes = {
 	
 }
 
-Main.contextTypes = {
+MainContainer.contextTypes = {
 	router : PropTypes.object.isRequired,
 }
 
-export default Main
+export default MainContainer
