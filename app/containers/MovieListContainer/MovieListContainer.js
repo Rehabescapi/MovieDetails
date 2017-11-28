@@ -5,8 +5,9 @@ import { getQuery } from '../../config/constants'
 var state = 'Adventure';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import { getGenreList } from 'redux/modules/movieList'
+import * as actions from 'redux/modules/movieList'
 import { browserHistory } from 'react-router'
+import { bindActionCreators } from 'redux';
  class MovieListContainer extends Component {
   constructor (props) {
     super(props)
@@ -22,9 +23,11 @@ import { browserHistory } from 'react-router'
   }
   
   componentDidMount () {
- 
-getGenreList(this.state.listType)
-.then((data) => this.setState({'movieList': data.results}))
+    
+    actions.initialList()
+    console.log('componentDidMount')
+/*getGenreList(this.state.listType)
+.then((data) => this.setState({'movieList': data.results}))*/
   }
 
   handleClick(movieId) {
@@ -76,10 +79,11 @@ function mapStateToProps ( props ){
 }
 
 
-function mapDispatchToProps (){
-
+function mapDispatchToProps (dispatch){
+  return  bindActionCreators(actions, dispatch)
+  
 }
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(MovieListContainer)
