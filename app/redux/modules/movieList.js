@@ -1,11 +1,13 @@
 import {getQuery, getActiveList, getInitialList, fetchingData} from 'config/api'
 import {configureCard} from 'config/utils'
 
+
+
 const ADD_MOVIE = 'ADD_MOVIE'
 
 const FETCHING_DATA ="FETCHING_DATA";
-const fetchingSuccess = 'FETCHING_SUCCESS'
-const festingError = 'FETCHING_ERROR'
+const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'
+const FETCHING_DATA_ERROR = 'FETCHING_DATA_ERROR'
 
 const parsingData = 'PARSING_DATA'
 const parsingDataSuccess = 'PARSING_DATA_SUCCESS'
@@ -17,33 +19,26 @@ const InitialState = {
     movies:[],
 }
 
-
-
-
-
-
-
 export function initialList (){
     console.log('pre return')
     return function action(dispatch) {
        dispatch(DataFetchin())
-        console.log(' return')
-        fetchingData()
-        .then(response => {
-            return response.json()
-        })
+        
+       fetch('http://localhost:3004/results')
+        .then((response) =>  response.json())
         .then(function(data){
-            console.log('pre data map')
-           Object.keys( data).map((element) => ( dispatch( AddMovie( configureCard(element)))
             
-        ))
+           ( data).map(function(element) { 
+              
+             
+                dispatch( AddMovie( configureCard(element)))
+            
+        })})
         .then(console.log('post data map'))
-    })
-
-    .catch((error)=>console.log(error))
+        .then(dispatch(DataFetchingSuccess()))
+        .catch((error)=>console.log(error))
     }
-    console.log('finished Initial List')
-}
+}   
 
 export function DispatchMovie (movie) {
     console.log('initial function')
@@ -66,9 +61,16 @@ export function DataFetchin () {
 
     }
 }
+export function DataFetchingSuccess () {
+    return {
+        type : FETCHING_DATA_SUCCESS,
+
+    }
+}
 
 
 export function AddMovie(card) {
+   
     return {
         type : ADD_MOVIE,
         card
@@ -78,19 +80,19 @@ export function AddMovie(card) {
 
 
 export default function movieList (state = InitialState , action ){
-    console.log(action)
+   
     switch (action.type) {
         case ADD_MOVIE:
-        console.log('add movie' + action.movie.id)
             return Object.assign( {}, state,{
               movies:[
                   ...state.movies,
-                  {
-                movie: action.movie}
-              ]
-            })
+                  action.card
+              
+          ] })
             case FETCHING_DATA:
             return{...state, isFetching:true}
+            case FETCHING_DATA_SUCCESS:
+            return {...state, isFetching : false}
 
         default :
         console.log('default')

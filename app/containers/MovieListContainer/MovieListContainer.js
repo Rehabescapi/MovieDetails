@@ -7,38 +7,31 @@ import {connect} from 'react-redux'
 
 import PropTypes from 'prop-types'
 import * as actions from 'redux/modules/movieList'
-console.log(actions)
+
 import { browserHistory } from 'react-router'
 import { bindActionCreators } from 'redux';
 
  class MovieListContainer extends Component {
   constructor (props) {
    super(props)
-
     this.handleClick= this.handleClick.bind(this)
-
-    console.log(props)
     const {dispatch} = props
 		
 		this.boundActionCreators = bindActionCreators(actions, dispatch)
-		console.log(this.boundActionCreators)
-		console.log(actions)
+	
   }
   
  
     componentDidMount() {
-      console.log(this.props)
+     
       const { dispatch } = this.props
       dispatch(actions.initialList())
     }
-  //  actions.initialList()
-   
-/*getGenreList(this.state.listType)
-.then((data) => this.setState({'movieList': data.results}))*/
+ 
   
 
   handleClick(movieId) {
-    console.log('woo')
+    
     this.context.router.history.replace('/movie/'+ movieId)
   }
 
@@ -82,7 +75,7 @@ MovieListContainer.contextTypes = {
 }
 
 function mapStateToProps ( state ){
-   
+  
   
   return {
     movieList : state.movies,
