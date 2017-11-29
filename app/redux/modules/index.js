@@ -1,2 +1,3 @@
-export detailList from './detailList.js'
-export movieList from './movieList.js'
+//export detailList from './detailList'
+export movieList from './movieList'
+export loadingList from './loadingList'

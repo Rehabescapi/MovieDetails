@@ -4,31 +4,38 @@ import { MovieListComponent } from 'components'
 import { getQuery } from '../../config/constants'
 var state = 'Adventure';
 import {connect} from 'react-redux'
+
 import PropTypes from 'prop-types'
 import * as actions from 'redux/modules/movieList'
+console.log(actions)
 import { browserHistory } from 'react-router'
 import { bindActionCreators } from 'redux';
+
  class MovieListContainer extends Component {
   constructor (props) {
-    super(props)
-    console.log(this.props)
-    this.state = {
-      movieList: [],
-      Title :this.props.listType,
-      listType : props.listType
-    }
+   super(props)
 
     this.handleClick= this.handleClick.bind(this)
-    
+
+    console.log(props)
+    const {dispatch} = props
+		
+		this.boundActionCreators = bindActionCreators(actions, dispatch)
+		console.log(this.boundActionCreators)
+		console.log(actions)
   }
   
-  componentDidMount () {
-    
-    actions.initialList()
-    console.log('componentDidMount')
+ 
+    componentDidMount() {
+      console.log(this.props)
+      const { dispatch } = this.props
+      dispatch(actions.initialList())
+    }
+  //  actions.initialList()
+   
 /*getGenreList(this.state.listType)
 .then((data) => this.setState({'movieList': data.results}))*/
-  }
+  
 
   handleClick(movieId) {
     console.log('woo')
@@ -36,14 +43,18 @@ import { bindActionCreators } from 'redux';
   }
 
   render () {
-    var movies = this.state.movieList
-    var ListType = this.state.listType
+  
+    var movies = {}
+    var ListType = {}
    
     if (!movies) {
       return null
     }
 
     return (
+      <div> 'woo '</div>
+    )
+    /*
         <div id='list'>
         {!movies &&
         <div> Loading... </div> }
@@ -54,13 +65,15 @@ import { bindActionCreators } from 'redux';
         </div>
         }
           </div>
-) }
+ }*/
+  }
 }
 
 MovieListContainer.propTypes = {
   Title : PropTypes.string,
   listType : PropTypes.string.isRequired, 
-  movies : PropTypes.object,
+  movies : PropTypes.array,
+ 
 
 }
 
@@ -68,22 +81,20 @@ MovieListContainer.contextTypes = {
   router : PropTypes.object.isRequired,
 }
 
-function mapStateToProps ( props ){
+function mapStateToProps ( state ){
    
-  const { movies, ListType, Title} = props
+  
   return {
-    movies,
-    ListType,
-    Title
+    movieList : state.movies,
+    movies : state.movies,
+    hasErrored: state.itemsHasErroed,
+    isLoading: state.itemsIsLoading
   }
 }
 
 
-function mapDispatchToProps (dispatch){
-  return  bindActionCreators(actions, dispatch)
-  
-}
+
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps
 )(MovieListContainer)

@@ -2,7 +2,10 @@ import React from 'react'
 import { getApiKey, genre , config} from './constants'
 
 
-
+export function fetchingData()
+{
+   return fetch('http://localhost:3004/results',{})
+}
 
 
 
