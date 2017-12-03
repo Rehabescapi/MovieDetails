@@ -72,8 +72,6 @@ MovieListContainer.contextTypes = {
 }
 
 function mapStateToProps ( state ){
-  console.log(state)
-  
   return {
     movieList : state.movieList.movies,
     movies : state.movieList.movies,

@@ -11,13 +11,9 @@ export const config ={
 export const genre = {
    Action:{ id : '28', active: true},
     Adventure :{id : '12', active : true},
-    
     Comedy : {id : '35', active: true},
-    
     Crime : {id : '80', active: false},
-
     Drama : {id: '18', active: true},
-
     Family : {id : '10751',active:false},
     Fantasy: {id :'14', active:true},
     Romance: {id : '10749', active: true},

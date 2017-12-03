@@ -1,9 +1,11 @@
-.card {
+.innerCard {
 	background-size:cover;
 	display:inline-block;
 	height:224.8px;
-	position:aboslute;
 	width:400px;
+	vertical-align: top;
+	*display: inline;
+	
 }
 .cardTitle{
 	background-color:rgba(0,0,0,0.6);

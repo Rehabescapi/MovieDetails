@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
-import {carouselButtons, movieList} from './MovieListComponent.css'
+import { movieListContainer, stretch} from './MovieListComponent.css'
 import {MovieCardComponent} from 'components'
 
 export default class MovieListComponent extends Component {
@@ -38,41 +38,26 @@ export default class MovieListComponent extends Component {
 
   render () {
     var movies = this.props.movies
-
-    var styleLeft = {
-      left: '0px',
-    }
-    /*
-    
-    */
     return (
-          <div>
-            <div id={this.state.el} className={movieList} style={styleLeft}>
-            <ul className={this.state.el}>
+        
+            <div className={movieListContainer} >
+         
             {movies.map((each, key) => {
+              if(each.genre_ids.includes(12))
+             {
               return (
-               
-                <div onClick={() => this.props.handleClick(each.id)}>
-                <MovieCardComponent key = {key} backdrop={each.backdrop_path} style={innerHeight = 50} poster={each.poster_path} title={each.title}
+              
+                <MovieCardComponent onClick={() => this.props.handleClick(each.id)} key ={key} backdrop={each.backdrop_path} poster={each.poster_path} title={each.title}
                  overview={each.overview} release={each.release_date} key={key} />
-               </div>
-      
-              )})}
-
-
-
-              </ul>
+              
+               
+              )}
+            })}
+            <span className="stretch"></span>
+             
             </div>
 
 
-
-
-
-            <div className={carouselButtons}>
-              <button id={this.state.el + 'LeftButton'} onClick={this.moveLeft}>&#x3c;</button>
-              <button onClick={this.moveRight}>&#x3e;</button>
-            </div>
-          </div>
 )
   }
 }

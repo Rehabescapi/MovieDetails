@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {cardTitle, card} from './MovieCardComponent.css';
+import {cardTitle, innerCard} from './MovieCardComponent.css';
 import {Link, withRouter , NavLink} from 'react-router-dom'
 import {bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
@@ -16,7 +16,7 @@ export default class MovieCard extends Component {
 
 		return (
 			
-			<div className={card} style={style} >
+			<div className={innerCard} style={style} >
 				<p className={cardTitle}>{this.props.title}</p>
 			</div>
 			
