@@ -25,7 +25,7 @@ export function getInitialList () {
 
 
 export  function getQuery(params){
-    console.log(params)
+
     return config.apiQuery + config.searchParams + genre[params].id;
 }
 

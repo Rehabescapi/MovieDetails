@@ -20,7 +20,7 @@ const InitialState = {
 }
 
 export function initialList (){
-    console.log('pre return')
+  
     return function action(dispatch) {
        dispatch(DataFetchin())
         
@@ -41,11 +41,11 @@ export function initialList (){
 }   
 
 export function DispatchMovie (movie) {
-    console.log('initial function')
+  
     return function (dispatch) {
-        console.log('dispatching')
+      
         dispatch(AddMovie(movie))
-        console.log('dispatched')
+     
     }
 
 }
@@ -95,7 +95,6 @@ export default function movieList (state = InitialState , action ){
             return {...state, isFetching : false}
 
         default :
-        console.log('default')
         return state
     }
 }

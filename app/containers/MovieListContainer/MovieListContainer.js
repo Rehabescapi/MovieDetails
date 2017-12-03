@@ -14,6 +14,7 @@ import { bindActionCreators } from 'redux';
  class MovieListContainer extends Component {
   constructor (props) {
    super(props)
+   console.log(props)
     this.handleClick= this.handleClick.bind(this)
     const {dispatch} = props
 		
@@ -37,28 +38,24 @@ import { bindActionCreators } from 'redux';
 
   render () {
   
-    var movies = {}
+    
     var ListType = {}
    
-    if (!movies) {
-      return null
-    }
+    
 
     return (
-      <div> 'woo '</div>
-    )
-    /*
+  
         <div id='list'>
-        {!movies &&
+        {!this.props.movies &&
         <div> Loading... </div> }
-        {movies &&
+        {this.props.movies &&
         <div>
-            <h2>{this.state.Title} Movies</h2>
-            <MovieListComponent movies={movies} listType={ListType} Title={this.props.Title} handleClick= {this.handleClick}/>
+            <h2>{this.props.Title} Movies</h2>
+            <MovieListComponent movies={this.props.movies} listType={ListType} Title={this.props.Title} handleClick= {this.handleClick}/>
         </div>
         }
           </div>
- }*/
+          )
   }
 }
 
@@ -75,11 +72,11 @@ MovieListContainer.contextTypes = {
 }
 
 function mapStateToProps ( state ){
-  
+  console.log(state)
   
   return {
-    movieList : state.movies,
-    movies : state.movies,
+    movieList : state.movieList.movies,
+    movies : state.movieList.movies,
     hasErrored: state.itemsHasErroed,
     isLoading: state.itemsIsLoading
   }

@@ -8,7 +8,7 @@ export function formatMovie () {
 
 export function configureCard(movie)
 {
-    console.log(movie)
+    
     return {
         id : movie.id,
         title : movie.title,

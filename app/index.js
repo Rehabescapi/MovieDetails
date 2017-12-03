@@ -10,7 +10,6 @@ import listReducer from 'redux/modules/movieList'
 import loadingList from 'redux/modules/loadingList'
 import thunk from 'redux-thunk'
 
-console.log(listReducer)
 import App from './App'
 import createHistory from 'history/createBrowserHistory'
 

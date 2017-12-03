@@ -21,7 +21,7 @@ import { HeaderComponent} from 'components'
     }
 
 	handleRecent = () => {
-		this.setState({displayMovies: false});
+		this.setState({displayMovies: true});
 	}
 	
 	render() {
