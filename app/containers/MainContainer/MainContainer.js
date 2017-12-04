@@ -19,7 +19,7 @@ import {GetRoutes}  from 'config/constants'
 		const {dispatch} = props
 		
 		this.boundActionCreators = bindActionCreators(actions, dispatch)
-		console.log(this.boundActionCreators)		
+		
 	
 	}
 

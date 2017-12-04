@@ -17,6 +17,7 @@ const InitialState = {
     isFetching: false,
     hasErrors: false,
     movies:[],
+    genreState: [],
 }
 
 export function initialList (){
@@ -34,7 +35,6 @@ export function initialList (){
                 dispatch( AddMovie( configureCard(element)))
             
         })})
-        .then(console.log('post data map'))
         .then(dispatch(DataFetchingSuccess()))
         .catch((error)=>console.log(error))
     }
@@ -55,6 +55,15 @@ export function DispatchMovie (movie) {
     .then((response) => response.json())
    .catch(function(error){ console.log(error) })
 }
+
+export function genreList(genre)
+{
+    console.log(genre)
+    var a = {}
+    return {type : null}
+}
+
+
 export function DataFetchin () {
     return {
         type : FETCHING_DATA,
@@ -89,10 +98,11 @@ export default function movieList (state = InitialState , action ){
                   action.card
               
           ] })
-            case FETCHING_DATA:
+        case FETCHING_DATA:
             return{...state, isFetching:true}
-            case FETCHING_DATA_SUCCESS:
+        case FETCHING_DATA_SUCCESS:
             return {...state, isFetching : false}
+
 
         default :
         return state

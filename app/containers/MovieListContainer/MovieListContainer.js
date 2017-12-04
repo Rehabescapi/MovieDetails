@@ -1,19 +1,23 @@
 import React, { Component } from 'react'
-import 'whatwg-fetch'
+
 import { MovieListComponent } from 'components'
 import { getQuery } from '../../config/constants'
-var state = 'Adventure';
+
 import {connect} from 'react-redux'
 
 import PropTypes from 'prop-types'
 import * as actions from 'redux/modules/movieList'
 
-import { browserHistory } from 'react-router'
+
+
+
 import { bindActionCreators } from 'redux';
 
  class MovieListContainer extends Component {
   constructor (props) {
    super(props)
+
+
    console.log(props)
     this.handleClick= this.handleClick.bind(this)
     const {dispatch} = props
@@ -24,10 +28,14 @@ import { bindActionCreators } from 'redux';
   
  
     componentDidMount() {
-     
-      const { dispatch } = this.props
-      dispatch(actions.initialList())
-    }
+     console.log(this.props)
+
+      /*movies.map((each, key) => {
+        if(each.genre_ids.includes(12))
+     */
+    
+       
+      }
  
   
 
@@ -72,12 +80,17 @@ MovieListContainer.contextTypes = {
 }
 
 function mapStateToProps ( state ){
+ 
   return {
-    movieList : state.movieList.movies,
+    
     movies : state.movieList.movies,
     hasErrored: state.itemsHasErroed,
     isLoading: state.itemsIsLoading
   }
+}
+
+function mapDispatchToProps( state ) {
+  //
 }
 
 

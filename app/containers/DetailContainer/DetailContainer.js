@@ -6,4 +6,10 @@ const DetailStub = () => (
   </div>
 );
 
+
+
+
+
+
+
 export default DetailStub;
