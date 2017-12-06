@@ -23,3 +23,16 @@ export function configureCard(movie)
     }
 
 }
+var count = 0;
+export function configureGenre( genre ) 
+{
+    return {
+        id : genre.id,
+        title : genre.genre,
+        location : count++,
+        hasquota : false,
+        isFetching : false,
+        movies : [],
+        count  : 0
+    }
+}

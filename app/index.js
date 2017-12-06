@@ -19,6 +19,7 @@ const store =  createStore( combineReducers({...reducers}), compose(
   const middleware = routerMiddleware(createHistory())
 
 
+
 ReactDOM.render(
   <Provider store={store}>
   <BrowserRouter>

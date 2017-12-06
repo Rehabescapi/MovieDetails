@@ -1,6 +1,6 @@
 import {getQuery, getActiveList, getInitialList, fetchingData} from 'config/api'
 import {configureCard} from 'config/utils'
-
+import { cycleGenre, handleChange} from 'redux/modules/genreList'
 
 
 const ADD_MOVIE = 'ADD_MOVIE'
@@ -34,34 +34,15 @@ export function initialList (){
              
                 dispatch( AddMovie( configureCard(element)))
             
-        })})
-        .then(dispatch(DataFetchingSuccess()))
+        })
+        dispatch(DataFetchingSuccess())
+        dispatch(cycleGenre())
+    })
+       
+       
         .catch((error)=>console.log(error))
     }
 }   
-
-export function DispatchMovie (movie) {
-  
-    return function (dispatch) {
-      
-        dispatch(AddMovie(movie))
-     
-    }
-
-}
-
- function getGenreList (genreType) {
-   return fetch(getQuery(genreType))
-    .then((response) => response.json())
-   .catch(function(error){ console.log(error) })
-}
-
-export function genreList(genre)
-{
-    console.log(genre)
-    var a = {}
-    return {type : null}
-}
 
 
 export function DataFetchin () {
@@ -86,7 +67,11 @@ export function AddMovie(card) {
     }
 }
 
+//listeners
 
+
+
+//reducer
 
 export default function movieList (state = InitialState , action ){
    
@@ -101,6 +86,7 @@ export default function movieList (state = InitialState , action ){
         case FETCHING_DATA:
             return{...state, isFetching:true}
         case FETCHING_DATA_SUCCESS:
+       
             return {...state, isFetching : false}
 
 

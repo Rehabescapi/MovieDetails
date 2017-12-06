@@ -8,6 +8,7 @@ import {MovieListContainer, SearchContainer} from 'containers'
 /* eslint-disable */
 import { HeaderComponent} from 'components'
 import * as actions from 'redux/modules/movieList'
+import * as genreActions from 'redux/modules/genreList'
 import {getGenreList} from 'config/constants'
 
  class HomeContainer extends Component {
@@ -15,7 +16,7 @@ import {getGenreList} from 'config/constants'
 		super(props);
 		
 		const {dispatch} = props
-		this.boundActionCreators = bindActionCreators(actions, dispatch)
+		this.boundActionCreators = bindActionCreators(actions,genreActions, dispatch)
 		
     }
     
@@ -23,9 +24,12 @@ import {getGenreList} from 'config/constants'
 	componentDidMount()
 	{
 			
-			 const { dispatch } = this.props
+		console.log(this.props)
+			 const { dispatch, getState } = this.props
 			 dispatch(actions.initialList())
-			 dispatch(actions.genreList(getGenreList()))
+			 dispatch(genreActions.initialGenre())
+			
+			
 	}
 
 	handleRecent = () => {
@@ -33,11 +37,20 @@ import {getGenreList} from 'config/constants'
 	}
 	
 	render() {
+		
 		return (
 			<div id='main'>
 			
 				<div className='innerContainer'>
-				
+				{
+					this.props.isLoading ?
+					<div > LOADING </div>
+					: this.props.GenreTypes.forEach(function(reference) {
+			
+					return (
+					<MovieListContainer Title ={reference.Title} listType ={reference.Title}/>
+					)
+				})}
 				<MovieListContainer Title='Action' listType='Action' />
 
 				</div>
@@ -47,7 +60,7 @@ import {getGenreList} from 'config/constants'
 };
 
 HomeContainer.propTypes = {
-	GenreTypes : PropTypes.array.isRequired,
+	GenreTypes : PropTypes.object.isRequired,
 	
 }
 
@@ -61,8 +74,8 @@ function mapStateToProps ( state ){
 	return {
 	  movieList : state.movieList.movies,
 	  hasErrored: state.itemsHasErroed,
-	  isLoading: state.itemsIsLoading,
-	  GenreTypes : state.movieList.genreState
+	  isLoading: true,
+	  GenreTypes : state.genreList.genres
 	}
   }
   
