@@ -36,3 +36,18 @@ export function configureGenre( genre )
         count  : 0
     }
 }
+
+
+export function tempGenre  (tempG, movieId, genreNum){
+       
+      if(tempG[genreNum])
+      {
+           tempG[genreNum].push(movieId)
+      }else{
+          var a = []
+          a.push(movieId)
+         tempG[genreNum] = a
+      }
+      return tempG
+  }
+  

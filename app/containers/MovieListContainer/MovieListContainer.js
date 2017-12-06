@@ -12,43 +12,35 @@ import * as actions from 'redux/modules/movieList'
 
 
 import { bindActionCreators } from 'redux';
+import movieList from '../../redux/modules/movieList';
 
  class MovieListContainer extends Component {
   constructor (props) {
    super(props)
+console.log(props)
 
-
-   console.log(props)
+   let parsedMovies = []
     this.handleClick= this.handleClick.bind(this)
     const {dispatch} = props
 		
 		this.boundActionCreators = bindActionCreators(actions, dispatch)
-	
   }
   
- 
     componentDidMount() {
-     console.log(this.props)
-
-      /*movies.map((each, key) => {
-        if(each.genre_ids.includes(12))
-     */
     
-       
       }
- 
-  
-
+    
   handleClick(movieId) {
     
     this.context.router.history.replace('/movie/'+ movieId)
   }
 
   render () {
-  
-    
-    var ListType = {}
-   
+    var  {movieList, id, movies} = this.props
+    let parsedMovies = []
+    movieList.forEach(element => {
+      parsedMovies.push(movies[element])
+    })
     
 
     return (
@@ -59,7 +51,8 @@ import { bindActionCreators } from 'redux';
         {this.props.movies &&
         <div>
             <h2>{this.props.Title} Movies</h2>
-            <MovieListComponent movies={this.props.movies} listType={ListType} Title={this.props.Title} handleClick= {this.handleClick}/>
+          <MovieListComponent movies={parsedMovies} listType={this.props.listType} Title={this.props.Title} handleClick= {this.handleClick}/>
+          
         </div>
         }
           </div>
@@ -70,9 +63,9 @@ import { bindActionCreators } from 'redux';
 MovieListContainer.propTypes = {
   Title : PropTypes.string,
   listType : PropTypes.string.isRequired, 
-  movies : PropTypes.array,
- 
-
+  movies : PropTypes.object,
+  movieList : PropTypes.array.isRequired,
+  parsedMovies : PropTypes.array
 }
 
 MovieListContainer.contextTypes = {
@@ -82,10 +75,10 @@ MovieListContainer.contextTypes = {
 function mapStateToProps ( state ){
  
   return {
-    
     movies : state.movieList.movies,
     hasErrored: state.itemsHasErroed,
-    isLoading: state.itemsIsLoading
+    isLoading: state.itemsIsLoading,
+    genreList: state.genreList.genres
   }
 }
 

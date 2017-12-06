@@ -13,7 +13,7 @@ export default class MovieListComponent extends Component {
   }
 
  
-
+/*
   moveLeft = () => {
     const list = document.getElementById(this.state.el)
     var val = (parseInt(list.style.left, 10) || 0) + 300
@@ -32,17 +32,16 @@ export default class MovieListComponent extends Component {
     } else {
       list.style.left = val + 'px'
     }
-  }
+  }*/
 
   render () {
-    var movies = this.props.movies
+    var {movies} = this.props
     return (
         
             <div className={movieListContainer} >
          
-            {movies.map((each, key) => {
-              if(each.genre_ids.includes(12))
-             {
+            {(movies).map((each, key) => {
+              
               return (
               
                 <MovieCardComponent onClick={() => this.props.handleClick(each.id)} key ={key} backdrop={each.backdrop_path} poster={each.poster_path} title={each.title}
@@ -50,7 +49,7 @@ export default class MovieListComponent extends Component {
               
                
               )}
-            })}
+            )}
             <span className="stretch"></span>
              
             </div>
@@ -64,6 +63,6 @@ export default class MovieListComponent extends Component {
 MovieListComponent.propTypes = 
 {
   handleClick : PropTypes.func.isRequired,
-  movies : PropTypes.array.isRequired 
+  movies : PropTypes.array 
 }
 

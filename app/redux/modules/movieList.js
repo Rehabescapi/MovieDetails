@@ -16,7 +16,7 @@ const parsingDataSuccess = 'PARSING_DATA_SUCCESS'
 const InitialState = {
     isFetching: false,
     hasErrors: false,
-    movies:[],
+    movies:{},
     genreState: [],
 }
 
@@ -77,12 +77,13 @@ export default function movieList (state = InitialState , action ){
    
     switch (action.type) {
         case ADD_MOVIE:
-            return Object.assign( {}, state,{
-              movies:[
+            return {
+                ...state,
+              movies:{
                   ...state.movies,
-                  action.card
+                 [action.card.id] :action.card
               
-          ] })
+             } }
         case FETCHING_DATA:
             return{...state, isFetching:true}
         case FETCHING_DATA_SUCCESS:

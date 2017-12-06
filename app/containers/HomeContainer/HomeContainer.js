@@ -1,5 +1,5 @@
 import React , {Component} from 'react'
-import PropTypes from 'prop-types'
+import PropTypes, { object } from 'prop-types'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 
@@ -24,7 +24,6 @@ import {getGenreList} from 'config/constants'
 	componentDidMount()
 	{
 			
-		console.log(this.props)
 			 const { dispatch, getState } = this.props
 			 dispatch(actions.initialList())
 			 dispatch(genreActions.initialGenre())
@@ -38,21 +37,32 @@ import {getGenreList} from 'config/constants'
 	
 	render() {
 		
+		 let a = Object.values(this.props.genreTypes)
+		
+		/* console.log(this.props.isLoading)
+		a.map((id)=> {console.log(id)
+					console.log(id.movies)
+				})
+		 
+ this.props.isLoading ?
+					  <div > LOADING </div>
+					:  {this.props.genreTypes.map((value)=> (
+					<MovieListContainer Title={'value.title'} listType={'value.title'}/>
+					))}
+
+				)}
+
+		 */
 		return (
 			<div id='main'>
 			
 				<div className='innerContainer'>
-				{
-					this.props.isLoading ?
-					<div > LOADING </div>
-					: this.props.GenreTypes.forEach(function(reference) {
-			
-					return (
-					<MovieListContainer Title ={reference.Title} listType ={reference.Title}/>
-					)
-				})}
-				<MovieListContainer Title='Action' listType='Action' />
-
+				
+					{this.props.isLoading
+					? <div> Loading </div>
+					:a.map(( id)=>(
+						<MovieListContainer key ={id.id}  id = {id.id} Title={id.title} listType={id.title} movieList = {id.movies}/>
+					))}
 				</div>
 			</div>
 		);
@@ -60,7 +70,7 @@ import {getGenreList} from 'config/constants'
 };
 
 HomeContainer.propTypes = {
-	GenreTypes : PropTypes.object.isRequired,
+	genreTypes : PropTypes.object.isRequired,
 	
 }
 
@@ -71,11 +81,13 @@ HomeContainer.contextTypes = {
 
 
 function mapStateToProps ( state ){
+	
 	return {
 	  movieList : state.movieList.movies,
 	  hasErrored: state.itemsHasErroed,
-	  isLoading: true,
-	  GenreTypes : state.genreList.genres
+	  isLoading: state.genreList.isLoading,
+	  genreTypes : state.genreList.genres,
+	  
 	}
   }
   

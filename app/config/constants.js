@@ -12,13 +12,13 @@ export const config ={
   { genre: 'Action' ,id : 28, active: true},
     { genre : 'Adventure' , id : 12, active : true},
     {genre :  'Comedy' ,id : 35, active: true},
-  {genre : 'Crime' ,id : 80, active: false},
+  {genre : 'Crime' ,id : 80, active: true},
      {genre: 'Drama',id: 18, active: true},
    { genre :'Family' ,id : 10751,active:false},
    {genre : 'Fantasy' , id :14, active:true},
-    {genre: 'Romance' , id : 10749, active: true},
+    {genre: 'Romance' , id : 10749, active: false},
 
-  {genre :   'SciFi', id : 878, active: false}
+  {genre :   'SciFi', id : 878, active: true}
 ]
 
 export function getGenreList() {

@@ -1,7 +1,7 @@
 import {getQuery } from 'config/api'
 import {getGenreList} from 'config/constants'
 
-import {configureGenre} from 'config/utils'
+import {configureGenre, tempGenre} from 'config/utils'
 
 
 
@@ -19,6 +19,7 @@ const CEMENT_GENRE_SUCCESS = 'CEMENT_GENRE_SUCCESS'
 
 const initialState = {
    isFetching : false,
+   isLoading : true,
    isUpdating : false,
     genres : {}
 }
@@ -28,40 +29,54 @@ var initialGenre = {
     location : 0,
     hasquota : false,
     isFetching : false,
-    movies : [1337,1338],
+    movies : [],
     count  : 0
 }
 
- 
  export function initialGenre(){
      const list = getGenreList()
-    return  function action(dispatch, getState) {
-      
+    return  function action(dispatch, getState) {  
     list.forEach(function( key) {
-    
-        dispatch(addToGenre(configureGenre(key)))
-       
-    
+        if(key.active)
+        {
+            dispatch(addToGenre(configureGenre(key)))
+        }
+
  })
  
 }}
 
+
+
 export function cycleGenre () {
   
     return function action (dispatch, getState){
+        dispatch(isUpdating())
         let genres = getState().genreList.genres
-        let movies = getState().movieList.movies
+        let movies = Object.values(getState().movieList.movies)
+       
+        let tempG = {}
         movies.forEach(function (movie) {
             movie.genre_ids.forEach(function (genreNum){
                     if(genres[genreNum]) {
-                        //for now brute force solution to achieve mvp
-                       dispatch(attatchToGenre(movie.id, genreNum))
+                        tempG = tempGenre(tempG,movie.id, genreNum )
                     }})
                 }) 
+            //send attach to Genere for each object map
+                for( const [key, value] of Object.entries(tempG)){
+                    dispatch(attatchToGenre(value, key))
+                }
+               dispatch(isUpdatingSuccess())
         
     }
 }
 
+export function isUpdating () {
+    return {type  :IS_UPDATING}
+}
+export function isUpdatingSuccess() {
+    return {type:  IS_UPDATING_SUCCESS}
+}
  export function addToGenre (genreL = initialGenre) {
     return {type : ADD_GENRE,
         key : genreL.id,
@@ -70,8 +85,6 @@ export function cycleGenre () {
 
 export function attatchToGenre( id, genre)
 {
-    console.log(genre)
-    console.log()
     return {
         type : ADD_TO_GENRE,
         genreId : genre,
@@ -86,23 +99,32 @@ export default function genreList (state = initialState, action ) {
     switch (action.type) {
         case ADD_GENRE:
         return {
+            ...state,
               genres:{...state.genres, 
                  [ action.key]: action.genre
                  
               
                }}
           case ADD_TO_GENRE:
-          console.log("ADD_TO_GENRE")
-          console.log(action.genreId)
-          console.log(state.genres[action.genreId].title)
-          console.log(action.movieId)
-          console.log(state.genres[action.genreId].movies)
           return {
+              ...state,
               genres: {...state.genres,
             [action.genreId] :{
                 ...state.genres[action.genreId],
-                movies : state.genres[action.genreId].movies.concat(action.movieId)
+                movies : state.genres[action.genreId].movies.concat(action.movieId),
+                hasquota : (state.genres[action.genreId].movies.length  + action.movieId.length )> 7 ? true : false
             }}
+          }
+
+          case IS_UPDATING:
+          return {
+              ...state,
+              isLoading : true,
+          }
+          case IS_UPDATING_SUCCESS:
+          return { 
+              ...state, 
+              isLoading: false
           }
        default: 
       return state
