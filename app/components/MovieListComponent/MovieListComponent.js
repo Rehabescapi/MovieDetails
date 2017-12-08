@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom';
-import { movieListContainer, stretch} from './MovieListComponent.css'
+import { movieListContainer, stretch, outerCard} from './MovieListComponent.css'
 import {MovieCardComponent} from 'components'
 
 export default class MovieListComponent extends Component {
   constructor (props) {
     super(props)
+    console.log(props)
     this.state = {
       el: props.ListType,
     }
@@ -33,21 +34,23 @@ export default class MovieListComponent extends Component {
       list.style.left = val + 'px'
     }
   }*/
+  componentDidMount() {
+   
+  }
 
   render () {
-    var {movies} = this.props
+    var {movies, handleClick} = this.props
     return (
         
             <div className={movieListContainer} >
          
             {(movies).map((each, key) => {
-              
+              console.log(each.id)
+              //this.props.handleClick(each.id)
               return (
-              
-                <MovieCardComponent onClick={() => this.props.handleClick(each.id)} key ={key} backdrop={each.backdrop_path} poster={each.poster_path} title={each.title}
-                 overview={each.overview} release={each.release_date} key={key} />
-              
-               
+              <div className={outerCard} onClick ={() => handleClick(each.id)}>
+                <MovieCardComponent  key ={key} backdrop={each.backdrop_path} poster={each.poster_path} title={each.title} />
+               </div>
               )}
             )}
             <span className="stretch"></span>

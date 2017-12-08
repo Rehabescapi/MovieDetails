@@ -25,3 +25,12 @@
     font-size: 0;
     line-height: 0
 }
+.outerCard {
+	background-size:cover;
+	display:inline-block;
+	height:224.8px;
+	width:400px;
+	vertical-align: top;
+	*display: inline;
+	
+}

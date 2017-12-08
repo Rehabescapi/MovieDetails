@@ -31,10 +31,6 @@ import {getGenreList} from 'config/constants'
 			
 	}
 
-	handleRecent = () => {
-		this.setState({displayMovies: true});
-	}
-	
 	render() {
 		
 		 let a = Object.values(this.props.genreTypes)

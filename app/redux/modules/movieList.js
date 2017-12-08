@@ -5,8 +5,8 @@ import { cycleGenre, handleChange} from 'redux/modules/genreList'
 
 const ADD_MOVIE = 'ADD_MOVIE'
 
-const FETCHING_DATA ="FETCHING_DATA";
-const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'
+const FETCHING_DATA ="FETCHING_DATA";//
+const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'//
 const FETCHING_DATA_ERROR = 'FETCHING_DATA_ERROR'
 
 const parsingData = 'PARSING_DATA'
@@ -67,11 +67,6 @@ export function AddMovie(card) {
     }
 }
 
-//listeners
-
-
-
-//reducer
 
 export default function movieList (state = InitialState , action ){
    

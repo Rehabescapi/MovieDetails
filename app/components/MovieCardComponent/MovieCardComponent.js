@@ -4,7 +4,7 @@ import {cardTitle, innerCard} from './MovieCardComponent.css';
 import {Link, withRouter , NavLink} from 'react-router-dom'
 import {bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
-export default class MovieCard extends Component {
+export default class MovieCardComponent extends Component {
 	
 	render() {
 		const imgSrc = 'https://image.tmdb.org/t/p/w500/';

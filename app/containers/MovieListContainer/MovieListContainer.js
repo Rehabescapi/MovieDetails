@@ -17,12 +17,11 @@ import movieList from '../../redux/modules/movieList';
  class MovieListContainer extends Component {
   constructor (props) {
    super(props)
-console.log(props)
+
 
    let parsedMovies = []
     this.handleClick= this.handleClick.bind(this)
     const {dispatch} = props
-		
 		this.boundActionCreators = bindActionCreators(actions, dispatch)
   }
   
@@ -31,8 +30,9 @@ console.log(props)
       }
     
   handleClick(movieId) {
-    
-    this.context.router.history.replace('/movie/'+ movieId)
+    //console.log('wooo')
+    console.log(movieId)
+    //this.context.router.history.replace('/movie/'+ movieId)
   }
 
   render () {
@@ -50,7 +50,7 @@ console.log(props)
         <div> Loading... </div> }
         {this.props.movies &&
         <div>
-            <h2>{this.props.Title} Movies</h2>
+            <h2  onClick={() => console.log('woo')}>{this.props.Title} Movies</h2>
           <MovieListComponent movies={parsedMovies} listType={this.props.listType} Title={this.props.Title} handleClick= {this.handleClick}/>
           
         </div>
