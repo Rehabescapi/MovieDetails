@@ -24,11 +24,25 @@ import {getGenreList} from 'config/constants'
 	componentDidMount()
 	{
 			
-			 const { dispatch, getState } = this.props
+			 const { dispatch, getState, apiNeeded } = this.props
 			 dispatch(actions.initialList())
 			 dispatch(genreActions.initialGenre())
+			// dispatch(genreActions.cycleGenre())
+			
+		
 			
 			
+	}
+	componentDidUpdate()
+	{
+		const { dispatch, getState, apiNeeded } = this.props
+	
+		if(apiNeeded){
+			dispatch(actions.clearApi())
+			console.log(apiNeeded)
+			dispatch(actions.initialList(apiNeeded))
+		}
+
 	}
 
 	render() {
@@ -83,6 +97,7 @@ function mapStateToProps ( state ){
 	  hasErrored: state.itemsHasErroed,
 	  isLoading: state.genreList.isLoading,
 	  genreTypes : state.genreList.genres,
+	  apiNeeded : state.movieList.apiNeeded
 	  
 	}
   }

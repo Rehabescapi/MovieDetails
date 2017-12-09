@@ -7,7 +7,6 @@ import {MovieCardComponent} from 'components'
 export default class MovieListComponent extends Component {
   constructor (props) {
     super(props)
-    console.log(props)
     this.state = {
       el: props.ListType,
     }

@@ -76,9 +76,10 @@ function mapStateToProps ( state ){
  
   return {
     movies : state.movieList.movies,
-    hasErrored: state.itemsHasErroed,
-    isLoading: state.itemsIsLoading,
+    hasErrored: state.movieList.hasErrored,
+    isLoading: state.movieList.itemsIsLoading,
     genreList: state.genreList.genres
+
   }
 }
 

@@ -40,31 +40,23 @@ var initialGenre = {
         if(key.active)
         {
             dispatch(addToGenre(configureGenre(key)))
-        }
-
- })
- 
+        }})
 }}
 
 
 
 export function cycleGenre () {
-   
+   console.log('woo')
     return function action (dispatch, getState){
         dispatch(isUpdating())
         let genres = getState().genreList.genres
         let movies = Object.values(getState().movieList.movies)
-        if(true){
-        }else 
-        {
-
-        }
         
-       
         let tempG = {}
         movies.forEach(function (movie) {
             movie.genre_ids.forEach(function (genreNum){
-                    if(genres[genreNum] && !genres[genreNum].movies.includes(movie.id)) {
+               
+                    if(genres[genreNum] && !genres[genreNum].movies.includes(movie.id) && !genres[genreNum].hasquota) {
                         tempG = tempGenre(tempG,movie.id, genreNum )
                     }})
                 }) 
@@ -72,7 +64,6 @@ export function cycleGenre () {
         for( const [key, value] of Object.entries(tempG)){
             dispatch(attatchToGenre(value, key))
         }
-        
         dispatch(isUpdatingSuccess())
        let updateMap = Object.values(getState().genreList.genres)
        let updateList = {}
@@ -81,11 +72,7 @@ export function cycleGenre () {
             updateList[ genRef.id] = genRef.count
        })
        console.log(updateList)
-       dispatch(addGenreMovie(updateList))
-
-
-
-        
+      dispatch(addGenreMovie(updateList))        
     }
 }
 

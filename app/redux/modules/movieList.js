@@ -1,17 +1,20 @@
-import {getQuery, getActiveList, getInitialList, fetchingData} from 'config/api'
+import {getQuery, getActiveList, getInitialList, fetchingData, getFromGenre} from 'config/api'
 import {configureCard} from 'config/utils'
 import { cycleGenre, handleChange} from 'redux/modules/genreList'
+import { error } from 'util';
+
+
 
 
 const ADD_MOVIE = 'ADD_MOVIE'
-
+const CLEAR_API = 'CLEAR_API'
 const FETCHING_DATA ="FETCHING_DATA";//
 const FETCHING_DATA_SUCCESS = 'FETCHING_DATA_SUCCESS'//
 const FETCHING_DATA_ERROR = 'FETCHING_DATA_ERROR'
 
 const parsingData = 'PARSING_DATA'
 const parsingDataSuccess = 'PARSING_DATA_SUCCESS'
-
+const SET_API_NEED = 'SET_API_NEED'
 
 const InitialState = {
     isFetching: false,
@@ -20,30 +23,77 @@ const InitialState = {
     genreState: [],
 }
 
-export function initialList (){
+export function initialList ( location = 'http://localhost:3004/db'){
   
-    return function action(dispatch) {
+    return function action(dispatch,getState) {
        dispatch(DataFetchin())
+        let currentMovies = getState().movieList.movies
+        var myHeaders = new Headers();
         
-       fetch('http://localhost:3004/results')
-        .then((response) =>  response.json())
+        var myInit = { method: 'GET',
+                       headers: myHeaders,
+                       mode: 'cors',
+                       cache: 'default' };
+       fetch(location, myInit)
+       .then((response) => response.json())
         .then(function(data){
-            
-           ( data).map(function(element) { 
-              
-             
+           let mson = data.results
+         //  console.log(data)
+           mson.map(function(element) { 
+               console.log(element)
                 dispatch( AddMovie( configureCard(element)))
-            
         })
         dispatch(DataFetchingSuccess())
         dispatch(cycleGenre())
     })
+        
+      
+    .catch((error)=>console.log(error))
        
-       
-        .catch((error)=>console.log(error))
+    
     }
-}   
+        
+        
+}
 
+
+
+export function addGenreMovie( genreList){
+    var x = true;
+    console.log(genreList)
+    if(Object.keys(genreList).length ===0)
+    return function action (dispatch){} 
+   let min = Object.keys(genreList).reduce(function(a,b) {return genreList[a] < genreList[b] ? a : b })
+   console.log(min)
+
+    return function action (dispatch){
+        if(x)
+        dispatch(setApiGoal(getFromGenre(min)))
+        else 
+        dispatch(setApiGoal())
+    }
+   //initialList(getFromGenre(min))
+  
+}
+
+export function dataFetchingError(error) 
+{
+    return {type : FETCHING_DATA_ERROR,
+    payload: error }
+}
+export function clearApi () 
+{
+    return {
+        type : CLEAR_API
+    }
+}
+
+export function setApiGoal( genId = {}){
+    return {
+        type : SET_API_NEED,
+        payload: genId
+        }
+}
 
 export function DataFetchin () {
     return {
@@ -84,8 +134,15 @@ export default function movieList (state = InitialState , action ){
         case FETCHING_DATA_SUCCESS:
        
             return {...state, isFetching : false}
-
-
+        case SET_API_NEED :
+        { return {...state, apiNeeded : action.payload}}
+             case CLEAR_API :
+             {return {...state , apiNeeded:null }}
+        case  FETCHING_DATA_ERROR:
+        {return {...state, 
+        isError : true,
+        error : payload.error
+    }}
         default :
         return state
     }
