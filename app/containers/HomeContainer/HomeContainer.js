@@ -24,9 +24,9 @@ import {getGenreList} from 'config/constants'
 	componentDidMount()
 	{
 			
-			 const { dispatch, getState, apiNeeded } = this.props
-			 dispatch(actions.initialList())
-			 dispatch(genreActions.initialGenre())
+			// const { dispatch, getState, apiNeeded } = this.props
+		//	 dispatch(actions.initialList())
+		//	 dispatch(genreActions.initialGenre())
 			// dispatch(genreActions.cycleGenre())
 			
 		
@@ -39,7 +39,6 @@ import {getGenreList} from 'config/constants'
 	
 		if(apiNeeded){
 			dispatch(actions.clearApi())
-			console.log(apiNeeded)
 			dispatch(actions.initialList(apiNeeded))
 		}
 
@@ -49,20 +48,6 @@ import {getGenreList} from 'config/constants'
 		
 		 let a = Object.values(this.props.genreTypes)
 		
-		/* console.log(this.props.isLoading)
-		a.map((id)=> {console.log(id)
-					console.log(id.movies)
-				})
-		 
- this.props.isLoading ?
-					  <div > LOADING </div>
-					:  {this.props.genreTypes.map((value)=> (
-					<MovieListContainer Title={'value.title'} listType={'value.title'}/>
-					))}
-
-				)}
-
-		 */
 		return (
 			<div id='main'>
 			

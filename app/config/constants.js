@@ -21,6 +21,9 @@
 export function getSearchParams() {
     return config.apiQuery + config.searchParams 
 }
+export function initialQuery () {
+    return config.apiQuery
+}
 
 export function getGenreList() {
     return  genre

@@ -6,8 +6,10 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { RowContainer, DetailContainer, HomeContainer} from 'containers'
 import {PageNotFound, HeaderComponent} from 'components'
-import * as actions from 'redux/modules/loadingList'
 
+
+import * as actions from 'redux/modules/movieList'
+import * as genreActions from 'redux/modules/genreList'
 
 
 /* eslint-disable */
@@ -18,15 +20,17 @@ import {GetRoutes}  from 'config/constants'
 		super(props);
 		const {dispatch} = props
 		
-		this.boundActionCreators = bindActionCreators(actions, dispatch)
+		this.boundActionCreators = bindActionCreators(actions, genreActions, dispatch)
 		
 	
 	}
 
 	componentDidMount() {
 	
-		const { dispatch } = this.props
-		dispatch(actions.updateDispathcer())
+		
+		const { dispatch, getState, apiNeeded } = this.props
+		dispatch(actions.initialList())
+		dispatch(genreActions.initialGenre())
 	}
 	handleRecent = () => {
 		this.setState({displayMovies: false});

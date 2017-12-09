@@ -1,5 +1,5 @@
 import React from 'react'
-import { getApiKey, genre , config, getSearchParams} from 'config/constants'
+import { getApiKey, genre , config, getSearchParams, initialQuery} from 'config/constants'
 
 
 export function fetchingData()
@@ -19,7 +19,7 @@ export function getCast (id)
 
 export function getInitialList () {
 
-   return 'localhost:8080/moviecard.json'
+   return initialQuery()
    
 }
 

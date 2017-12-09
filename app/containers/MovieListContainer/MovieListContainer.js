@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-
 import { MovieListComponent } from 'components'
 import { getQuery } from '../../config/constants'
-
 import {connect} from 'react-redux'
-
 import PropTypes from 'prop-types'
 import * as actions from 'redux/modules/movieList'
 
@@ -30,9 +27,9 @@ import movieList from '../../redux/modules/movieList';
       }
     
   handleClick(movieId) {
-    //console.log('wooo')
+  
     console.log(movieId)
-    //this.context.router.history.replace('/movie/'+ movieId)
+    this.context.router.history.replace('/movie/'+ movieId)
   }
 
   render () {
