@@ -17,8 +17,8 @@ export function configureCard(movie)
         overview : movie.overview,
         release_date : movie.release_date,
         poster_path: movie.poster_path,
-        backdrop_path: movie.backdrop_path
-
+        backdrop_path: movie.backdrop_path,
+        datePulled : new Date()
 
     }
 

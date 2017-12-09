@@ -1,6 +1,6 @@
 import {getQuery } from 'config/api'
 import {getGenreList} from 'config/constants'
-
+import {addGenreMovie } from 'redux/modules/movieList'
 import {configureGenre, tempGenre} from 'config/utils'
 
 
@@ -49,24 +49,42 @@ var initialGenre = {
 
 
 export function cycleGenre () {
-  
+   
     return function action (dispatch, getState){
         dispatch(isUpdating())
         let genres = getState().genreList.genres
         let movies = Object.values(getState().movieList.movies)
+        if(true){
+        }else 
+        {
+
+        }
+        
        
         let tempG = {}
         movies.forEach(function (movie) {
             movie.genre_ids.forEach(function (genreNum){
-                    if(genres[genreNum]) {
+                    if(genres[genreNum] && !genres[genreNum].movies.includes(movie.id)) {
                         tempG = tempGenre(tempG,movie.id, genreNum )
                     }})
                 }) 
             //send attach to Genere for each object map
-                for( const [key, value] of Object.entries(tempG)){
-                    dispatch(attatchToGenre(value, key))
-                }
-               dispatch(isUpdatingSuccess())
+        for( const [key, value] of Object.entries(tempG)){
+            dispatch(attatchToGenre(value, key))
+        }
+        
+        dispatch(isUpdatingSuccess())
+       let updateMap = Object.values(getState().genreList.genres)
+       let updateList = {}
+       updateMap.forEach((genRef)=> {
+           if(!genRef.hasquota)
+            updateList[ genRef.id] = genRef.count
+       })
+       console.log(updateList)
+       dispatch(addGenreMovie(updateList))
+
+
+
         
     }
 }
@@ -112,7 +130,8 @@ export default function genreList (state = initialState, action ) {
             [action.genreId] :{
                 ...state.genres[action.genreId],
                 movies : state.genres[action.genreId].movies.concat(action.movieId),
-                hasquota : (state.genres[action.genreId].movies.length  + action.movieId.length )> 7 ? true : false
+                hasquota : (state.genres[action.genreId].movies.length  + action.movieId.length )>= 7 ? true : false,
+                count : state.genres[action.genreId].movies.length + action.movieId.length
             }}
           }
 

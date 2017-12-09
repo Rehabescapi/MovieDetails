@@ -45,10 +45,10 @@ export default class MovieListComponent extends Component {
             <div className={movieListContainer} >
          
             {(movies).map((each, key) => {
-              console.log(each.id)
+             
               //this.props.handleClick(each.id)
               return (
-              <div className={outerCard} onClick ={() => handleClick(each.id)}>
+              <div className={outerCard} key = {key} onClick ={() => handleClick(each.id)}>
                 <MovieCardComponent  key ={key} backdrop={each.backdrop_path} poster={each.poster_path} title={each.title} />
                </div>
               )}
