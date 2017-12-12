@@ -40,7 +40,6 @@ export function initialList ( location = 'http://localhost:3004/db'){
            let mson = data.results
          //  console.log(data)
            mson.map(function(element) { 
-               console.log(element)
                 dispatch( AddMovie( configureCard(element)))
         })
         dispatch(DataFetchingSuccess())
@@ -62,7 +61,9 @@ export function addGenreMovie( genreList){
     var x = true;
     console.log(genreList)
     if(Object.keys(genreList).length ===0)
-    return function action (dispatch){} 
+    return function action (dispatch){}
+
+
    let min = Object.keys(genreList).reduce(function(a,b) {return genreList[a] < genreList[b] ? a : b })
    console.log(min)
 

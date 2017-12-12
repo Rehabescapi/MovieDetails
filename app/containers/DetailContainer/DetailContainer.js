@@ -3,20 +3,28 @@ import { DetailComponent, CastComponent } from 'components'
 import { getQuery } from '../../config/constants'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import * as actions from 'redux/modules/movieList'
+import * as actions from 'redux/modules/detailList'
 
 import { bindActionCreators } from 'redux';
 class DetailContainer extends Component {
   constructor(props) 
   {
     super(props)
-
-    console.log(this.props.match.params.movieId)
+    
+    const {dispatch} = props
+    this.boundActionCreators = bindActionCreators(actions, dispatch)
   }
 componentDidMount(){
+  const {movieId, dispatch} = this.props
+  //console.log(movie)
+ 
+  dispatch(actions.fetchAndHandleDetail(this.props.match.params.movieId))
 
 }
 
+componentWillMount() {
+ 
+}
 
 
   render () {

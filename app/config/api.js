@@ -1,5 +1,5 @@
 import React from 'react'
-import { getApiKey, genre , config, getSearchParams, initialQuery} from 'config/constants'
+import { getApiKey, genre , config, getSearchParams, initialQuery, detalQuery, detalQueryB} from 'config/constants'
 
 
 export function fetchingData()
@@ -34,4 +34,7 @@ export  function getQuery(params){
     return config.apiQuery + config.searchParams + genre[params].id;
 }
 
+export function getDetail(params){
+    return config.detailQuery + params + config.key + config.detailQueryB
+}
 
