@@ -1,13 +1,14 @@
 import * as apiActions from 'config/api'
 import {configureDetail} from 'config/utils'
 import { initialList } from './movieList';
+import { configureCard } from '../../config/utils';
 
 
 
 const FETCHING_DETAIL ="FETCHING_DETAIL";
 const FETCHING_DETAIL_SUCCESS = 'FETCHING_DETAIL_SUCCESS'
 const FETCHING_DETAIL_ERROR = 'FETCHING_DETAIL_ERROR'
-const ADD_DETIAL = 'ADD_DETAIL'
+const ADD_DETAIL = 'ADD_DETAIL'
 const ADD_CAST_PAYLOAD = 'ADD_CAST_PAYLOAD'
 
 
@@ -38,7 +39,7 @@ export function fetchAndHandleDetail (movieId) {
     return function action (dispatch , getState) {
         dispatch(fetchingDetail())
         let fetchUrl = apiActions.getDetail(movieId)
-        console.log(fetchUrl)
+        
         var myHeaders = new Headers();
         var myInit = { method: 'GET',
                        headers: myHeaders,
@@ -47,8 +48,9 @@ export function fetchAndHandleDetail (movieId) {
        fetch(fetchUrl, myInit)
        .then((response) => response.json())
         .then(function(data){
-            console.log(data)
-            configureDetail(data)
+         
+          dispatch(addDetail(configureDetail(data)))
+          dispatch(fetchingDetailSuccess())
         })
     
     }
@@ -57,7 +59,7 @@ export function fetchAndHandleDetail (movieId) {
 
 export function addDetail (detailCard) {
     return {
-        type : ADD_DETIAL,
+        type : ADD_DETAIL,
         payload : detailCard
     }
 }
@@ -87,6 +89,12 @@ export function fetchingDetailError (error){
 export default function detailList (state = initialState, action ) {
 
     switch (action.type){
+        
+        case ADD_DETAIL:
+        return {...state, moviesdetail : {...state.moviesdetail, [action.payload.detailId] : action.payload
+        }}
+       
+
     case FETCHING_DETAIL :
     return { ...state , isFetching : true}
     case FETCHING_DETAIL_SUCCESS :
@@ -97,6 +105,7 @@ export default function detailList (state = initialState, action ) {
 
 
     default :
+   
     return state
 
     }

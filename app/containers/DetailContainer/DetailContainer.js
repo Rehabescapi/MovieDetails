@@ -19,24 +19,34 @@ componentDidMount(){
   //console.log(movie)
  
   dispatch(actions.fetchAndHandleDetail(this.props.match.params.movieId))
-
+ 
 }
 
 componentWillMount() {
- 
+  
+  
 }
 
 
   render () {
-    console.log(this.props)
+    const imgSrc = 'https://image.tmdb.org/t/p/w500'
+    
+    let {movie , detail} = this.props
+   
     return (
 
       <div> <h2> Detail Container </h2>
       
-   {this.props.movie?
-   <DetailComponent movie = {this.props.movie}/>
+   {detail &&movie?//unpolished conditional
+   <DetailComponent movie = {movie} detail = {detail}/>
+  
+   
    :<div>nada </div>
    }
+   {this.props.detail?
+   <CastComponent cast = {this.props.detail.cast}/>
+  :<div> Loading </div>
+  }
       </div>
     )
   }
@@ -52,11 +62,13 @@ DetailContainer.contextTypes = {
 
 function mapStateToProps ( state , props) {
  var movieId = props.match.params.movieId
+ 
   return {
    movie : state.movieList.movies[movieId],
     hasErrored: state.movieList.hasErrored,
     isLoading: state.movieList.itemsIsLoading,
-
+    detail : state.detailList.moviesdetail[movieId],
+  //  background : state.movieList.movies[movieId].backdrop_path
   }
 }
 

@@ -7,26 +7,35 @@ import PropTypes from 'prop-types'
  class DetailsCard extends Component {
   constructor (props) {
     super(props)
-    console.log('WoOOOO')
+    console.log(this.props.detail)
     
   }
 
     render () {
-       var {poster_path, releaseDate, title, ratings, genre_ids ,overview } = this.props.movie
-      const imgSrc = 'https://image.tmdb.org/t/p/w500'
+       var {poster_path, backdrop_path,  title, genre_ids ,overview } = this.props.movie
+       var {release_date , cast, rating, runtime} = this.props.detail
+       const imgSrc = 'https://image.tmdb.org/t/p/w1280'
+       const pstSrc ='https://image.tmdb.org/t/p/w342'
+       let stylez = {}
+       if(this.props.movie){
+         stylez = {
+           backgroundImage : 'url(' + imgSrc + backdrop_path + ')'
+       }}
+       console.log(stylez)
+      
       return (
-        <div id='detailsCard'>
-          <div id='content'>
-            <img src={imgSrc + poster_path} alt='movie poster' />
-            <div id='content-align'>
+        <div id={style.detailsCard} style={stylez}>
+          <div id={style.content}>
+            <img src={pstSrc + poster_path} alt='movie poster' />
+            <div id={style.contentAlign}>
               <h3>{title}</h3>
-              <p>{'Release Date: '}{releaseDate}</p>
-              <p>{'Rated: '}{ratings}</p>
-              <div>{'Genre: '}
+              <p>{'Release Date: '}{release_date}</p>
+              <p>{'Rated: '}{rating}</p>
+              <div>{'Genre: '} {genre_ids}
               </div>
-              <p>{'Runtime: '}{}{'h '}{}{'m'}</p>
+              <p>{'Runtime: '}{runtime.h}{'h '}{runtime.m}{'m'}</p>
               <h4>{'Overview'}</h4>
-              <p id='overview'>{overview}</p>
+              <p id={style.overview}>{overview}</p>
               </div>
         </div>
     </div>

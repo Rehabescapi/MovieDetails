@@ -37,21 +37,25 @@ export function configureGenre( genre )
     }
 }
 
-export function configureDetail(detailID)
+export function configureDetail(detailId)
 {
    let rating
-    detailID.releases.countries.forEach((region)=>{
+    detailId.releases.countries.forEach((region)=>{
        if(region.iso_3166_1 === 'US' && region.certification)
        { 
            rating = region.certification
         return 
        }
    })
-
+ let min = detailId.runtime%60
+ let hour = Math.floor(detailId.runtime/60)
     return {
-        cast : detailID.credits.cast.slice(0,4),
-        release_date : detailID.release_date,
-        rating : rating
+        detailId : detailId.id,
+        cast : detailId.credits.cast.slice(0,5),
+        release_date : detailId.release_date,
+        rating : rating,
+        genre : detailId.genre,
+       runtime : {'h' : hour, 'm' : min}
     }
 }
 
