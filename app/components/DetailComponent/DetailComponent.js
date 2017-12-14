@@ -28,13 +28,11 @@ import PropTypes from 'prop-types'
           <div id={style.content}>
             <img src={pstSrc + poster_path} alt='movie poster' />
             <div id={style.contentAlign}>
-              <h3>{title}</h3>
-              <p>{'Release Date: '}{release_date}</p>
+              <h3>{title + '( ' + release_date + ' )'}</h3>
               <p>{'Rated: '}{rating}</p>
               <div>{'Genre: '} {genre_ids}
               </div>
               <p>{'Runtime: '}{runtime.h}{'h '}{runtime.m}{'m'}</p>
-              <h4>{'Overview'}</h4>
               <p id={style.overview}>{overview}</p>
               </div>
         </div>
@@ -42,7 +40,9 @@ import PropTypes from 'prop-types'
 )
   }}
 
+class GenreDetails extends Component {
 
+}
 
 
   

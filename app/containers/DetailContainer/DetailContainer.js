@@ -30,17 +30,11 @@ componentWillMount() {
 
   render () {
     const imgSrc = 'https://image.tmdb.org/t/p/w500'
-    
     let {movie , detail} = this.props
-   
     return (
-
-      <div> <h2> Detail Container </h2>
-      
+      <div> <h2> Detail Container </h2>  
    {detail &&movie?//unpolished conditional
    <DetailComponent movie = {movie} detail = {detail}/>
-  
-   
    :<div>nada </div>
    }
    {this.props.detail?

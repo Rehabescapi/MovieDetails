@@ -17,20 +17,22 @@ class CastComponent extends Component {
         const imgSrc = 'https://image.tmdb.org/t/p/w154/'
        
         return (
-            <div id={style.cast}> {'CAST'} 
-  <h4>{'Top Billed Cast'}</h4>
+            <div id={style.cast}> {'Top Billed Cast'} <ul id ={style.castList}>
             {(this.props.cast).map((each, key ) => {
                 
                 return (
-                    <div id={style.actorsStyle} key={key}>
+                    <li key = {key} >
+                    <div id={style.actorsStyle} >
                     <div id={style.actors}>
                     <img id={style.actorPic} src={imgSrc + each.profile_path} alt={'picture of ' + each.name} />
                     </div>
-                    <h3>{each.name}</h3>
+                    <h4>{each.name}</h4>
                     <h6>{each.character}</h6>
                     </div>
+                    </li>
                 )
             })}
+            </ul>
             </div>
         )
     }

@@ -5,13 +5,41 @@
     color: white;
     text-align: center;
 }
-#card h4 {
-	font-size:2.2rem;
-	margin:3% 0 0 0;
+#castList {
+    align-items: baseline;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    max-width: 100vw;
+    list-style-type: none;
+}
+
+#castList img {
+    border-radius: 20px;
+    height: 260px;
+    max-width: 173px;
 }
 
 #cast h4 {
-	margin:3% 0 1% 0;
+	font-size:2.2rem;
+    margin:3% 0 0 0;
+    display: block;
+    -webkit-margin-before: 1.33em;
+    -webkit-margin-after: 1.33em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+#cast h6 {
+    margin:3% 0 1% 0;
+    display: block;
+    font-size: 0.67em;
+    -webkit-margin-before: 2.33em;
+    -webkit-margin-after: 2.33em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
 }
 #actorsStyle {
 	display:inline-block;
@@ -22,11 +50,7 @@
     
     max-width: 18vw;
 }
-#actorStyle img {
-    border-radius: 20px;
-    height: 260px;
-    max-width: 173px;
-}
+
 #actors {
 	border:2px solid #fff;
 	border-radius: 20px;
