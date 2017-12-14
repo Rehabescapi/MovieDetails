@@ -13,7 +13,8 @@ import PropTypes from 'prop-types'
 
     render () {
        var {poster_path, backdrop_path,  title, genre_ids ,overview } = this.props.movie
-       var {release_date , cast, rating, runtime} = this.props.detail
+       var {release_date , cast, rating, runtime, genre} = this.props.detail
+       console.log(genre)
        const imgSrc = 'https://image.tmdb.org/t/p/w1280'
        const pstSrc ='https://image.tmdb.org/t/p/w342'
        let stylez = {}
@@ -21,8 +22,7 @@ import PropTypes from 'prop-types'
          stylez = {
            backgroundImage : 'url(' + imgSrc + backdrop_path + ')'
        }}
-       console.log(stylez)
-      
+      console.log(genre)
       return (
         <div id={style.detailsCard} style={stylez}>
           <div id={style.content}>
@@ -30,8 +30,13 @@ import PropTypes from 'prop-types'
             <div id={style.contentAlign}>
               <h3>{title + '( ' + release_date + ' )'}</h3>
               <p>{'Rated: '}{rating}</p>
-              <div>{'Genre: '} {genre_ids}
-              </div>
+              <ul id={style.genreList}>{'Genre: '} {(genre).map(element => {
+              
+              return <li> {element.name} </li>
+              }) 
+              }
+        
+              </ul>
               <p>{'Runtime: '}{runtime.h}{'h '}{runtime.m}{'m'}</p>
               <p id={style.overview}>{overview}</p>
               </div>
@@ -40,8 +45,10 @@ import PropTypes from 'prop-types'
 )
   }}
 
-class GenreDetails extends Component {
+function GenreDetails ({ genre }){
 
+    return   <div className = {style.genrecard}> {genre.name} </div>
+  
 }
 
 

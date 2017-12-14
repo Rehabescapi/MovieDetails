@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { RowContainer, DetailContainer, HomeContainer} from 'containers'
+import { RowContainer, DetailContainer, HomeContainer, Search} from 'containers'
 import {PageNotFound, HeaderComponent} from 'components'
 
 
@@ -39,7 +39,7 @@ import {GetRoutes}  from 'config/constants'
 	render() {
 		return (
 			<div id='main'>
-			
+			<Search />
 			<Router>  
                 <Switch >
                     <Route exact path ='/' component= {HomeContainer} />

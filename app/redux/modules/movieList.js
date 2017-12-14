@@ -38,7 +38,7 @@ export function initialList ( location = 'http://localhost:3004/db'){
        .then((response) => response.json())
         .then(function(data){
            let mson = data.results
-         //  console.log(data)
+        
            mson.map(function(element) { 
                 dispatch( AddMovie( configureCard(element)))
         })
@@ -59,14 +59,12 @@ export function initialList ( location = 'http://localhost:3004/db'){
 
 export function addGenreMovie( genreList){
     var x = true;
-    console.log(genreList)
     if(Object.keys(genreList).length ===0)
     return function action (dispatch){}
 
 
    let min = Object.keys(genreList).reduce(function(a,b) {return genreList[a] < genreList[b] ? a : b })
-   console.log(min)
-
+   
     return function action (dispatch){
         if(x)
         dispatch(setApiGoal(getFromGenre(min)))

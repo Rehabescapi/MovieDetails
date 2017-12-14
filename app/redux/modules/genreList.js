@@ -46,7 +46,7 @@ var initialGenre = {
 
 
 export function cycleGenre () {
-   console.log('woo')
+  
     return function action (dispatch, getState){
         dispatch(isUpdating())
         let genres = getState().genreList.genres
@@ -71,7 +71,7 @@ export function cycleGenre () {
            if(!genRef.hasquota)
             updateList[ genRef.id] = genRef.count
        })
-       console.log(updateList)
+     
       dispatch(addGenreMovie(updateList))        
     }
 }

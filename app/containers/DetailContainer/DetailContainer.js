@@ -32,7 +32,7 @@ componentWillMount() {
     const imgSrc = 'https://image.tmdb.org/t/p/w500'
     let {movie , detail} = this.props
     return (
-      <div> <h2> Detail Container </h2>  
+      <span> 
    {detail &&movie?//unpolished conditional
    <DetailComponent movie = {movie} detail = {detail}/>
    :<div>nada </div>
@@ -41,7 +41,7 @@ componentWillMount() {
    <CastComponent cast = {this.props.detail.cast}/>
   :<div> Loading </div>
   }
-      </div>
+      </span>
     )
   }
 

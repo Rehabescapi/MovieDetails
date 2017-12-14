@@ -58,6 +58,7 @@ export function fetchAndHandleDetail (movieId) {
 
 
 export function addDetail (detailCard) {
+    console.log(detailCard)
     return {
         type : ADD_DETAIL,
         payload : detailCard

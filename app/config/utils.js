@@ -39,6 +39,7 @@ export function configureGenre( genre )
 
 export function configureDetail(detailId)
 {
+    console.log(detailId)
    let rating
     detailId.releases.countries.forEach((region)=>{
        if(region.iso_3166_1 === 'US' && region.certification)
@@ -54,7 +55,7 @@ export function configureDetail(detailId)
         cast : detailId.credits.cast.slice(0,5),
         release_date : detailId.release_date,
         rating : rating,
-        genre : detailId.genre,
+        genre : detailId.genres,
        runtime : {'h' : hour, 'm' : min}
     }
 }

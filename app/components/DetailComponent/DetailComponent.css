@@ -50,3 +50,17 @@ h4 {
 #content p {
  font-size: .8em;
 }
+
+#genreList {
+	display:flex;
+	list-style-type:none;
+	padding:0;
+}
+#genreList li {
+	background-color:#000;
+	border-radius:10px;
+	color:#fff;
+	font-size:0.7em;
+	margin:0 2% 0 0;
+	padding:10px;
+}
