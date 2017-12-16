@@ -5,4 +5,4 @@ export MovieListComponent from './MovieListComponent/MovieListComponent'
 export MovieCardComponent from './MovieCardComponent/MovieCardComponent'
 export PageNotFound from './PageNotFound/PageNotFound'
 
-export SearchComponent from './SearchComponent/SearchComponent'
+export Search from './SearchComponent/SearchComponent'
