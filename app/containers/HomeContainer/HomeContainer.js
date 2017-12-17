@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 
-import {MovieListContainer, SearchContainer} from 'containers'
+import {MovieListContainer, Search} from 'containers'
 /* eslint-disable */
 import { HeaderComponent} from 'components'
 import * as actions from 'redux/modules/movieList'
@@ -23,15 +23,7 @@ import {getGenreList} from 'config/constants'
 
 	componentDidMount()
 	{
-			
-			// const { dispatch, getState, apiNeeded } = this.props
-		//	 dispatch(actions.initialList())
-		//	 dispatch(genreActions.initialGenre())
-			// dispatch(genreActions.cycleGenre())
-			
 		
-			
-			
 	}
 	componentDidUpdate()
 	{
@@ -50,6 +42,7 @@ import {getGenreList} from 'config/constants'
 		
 		return (
 			<div id='main'>
+		
 			
 				<div className='innerContainer'>
 				

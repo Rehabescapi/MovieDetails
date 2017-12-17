@@ -12,11 +12,11 @@ import thunk from 'redux-thunk'
 
 import App from './App'
 import createHistory from 'history/createBrowserHistory'
-
+const middleware = routerMiddleware(createHistory())
 const store =  createStore( combineReducers({...reducers}), compose(
-  applyMiddleware(thunk),
+  applyMiddleware(thunk, middleware),
   window.devToolsExtension ? window.devToolsExtension() : (f) => f))
-  const middleware = routerMiddleware(createHistory())
+ 
 
 
 

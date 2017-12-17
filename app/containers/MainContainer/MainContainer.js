@@ -1,10 +1,10 @@
 import React , {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Route, Switch ,withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
-import { RowContainer, DetailContainer, HomeContainer, Search} from 'containers'
+import { RowContainer, DetailContainer, HomeContainer, SearchContainer} from 'containers'
 import {PageNotFound, HeaderComponent} from 'components'
 
 
@@ -29,6 +29,7 @@ import {GetRoutes}  from 'config/constants'
 	
 		
 		const { dispatch, getState, apiNeeded } = this.props
+		
 		dispatch(actions.initialList())
 		dispatch(genreActions.initialGenre())
 	}
@@ -39,7 +40,7 @@ import {GetRoutes}  from 'config/constants'
 	render() {
 		return (
 			<div id='main'>
-			<Search />
+			<SearchContainer />
 			<Router>  
                 <Switch >
                     <Route exact path ='/' component= {HomeContainer} />
@@ -71,4 +72,4 @@ function mapStateToProps ( state ){
 
 
 
-export default connect(mapStateToProps) (MainContainer)
+export default withRouter( connect(mapStateToProps) (MainContainer))

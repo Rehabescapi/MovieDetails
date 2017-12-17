@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import {cardTitle, innerCard} from './MovieCardComponent.css';
-import {Link, withRouter , NavLink} from 'react-router-dom'
+import {Link , NavLink} from 'react-router-dom'
 import {bindActionCreators } from 'redux'
 import PropTypes from 'prop-types'
 export default class MovieCardComponent extends Component {
