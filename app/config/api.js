@@ -8,15 +8,6 @@ export function fetchingData()
 }
 
 
-
-export function getCast (id)
-{
-    
- ///movie/{movie_id}/credits
- return null
-}
-
-
 export function getInitialList () {
 
    return initialQuery()
@@ -38,3 +29,8 @@ export function getDetail(params){
     return config.detailQuery + params + config.key + config.detailQueryB
 }
 
+export function searchMovie(params){
+    console.log(params)
+    return config.searchQuery + (params).split(' ').join('+') + config.andKey + '&language=en-US&page=1'
+  
+}

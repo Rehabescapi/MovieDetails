@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types'
 import './Search.css';
 
 class Search extends Component {
@@ -14,32 +14,32 @@ class Search extends Component {
 	}
 
 	handleChange(e) {
-		this.setState({value: e.target.value});
+	this.props.handleChange(e.target.value)
 	}
 
 	handleSubmit(e) {
-		if (e.key === 'Enter') {
-			if (this.state.value === '') {
-				return;
-			}
-			if (localStorage) {
-				localStorage.setItem('movieName', this.state.value);
-			}
-
-			this.props.handleMovieName(this.state.value);
-			this.props.history.push('/movie/movie');
-
-			let input = document.querySelector('#searchTitle');
-			input.value = '';
-
-		}
+		e.preventDefault()
+		this.props.searchAndHandleResultText()
 	}
 
 	render() {
+		console.log(this.props)
 		return (
-			<input type="text" id="searchTitle" placeholder="Search Title" onChange={this.handleChange} onKeyPress={this.handleSubmit} value={this.state.input} />
+			<span>
+			<input type="text" id="searchTitle" placeholder="Search Title" onChange={this.handleChange}  value={this.searchText} />
+			<button
+			onClick={this.handleSubmit}>
+			{'Duck'}
+		  </button>
+		  </span>
 		)
 	}
+}
+
+Search.PropTypes = {
+	text : PropTypes.string.isRequired,
+	handleChange : PropTypes.func.isRequired,
+	searchAndHandleResultText : PropTypes.func.isRequired
 }
 
 export default Search;

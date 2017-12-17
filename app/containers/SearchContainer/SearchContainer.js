@@ -1,16 +1,18 @@
 import { bindActionCreators } from 'redux'
 import { Search } from 'components'
 import { connect } from 'react-redux'
-import * as modalActionCreators from 'redux/modules/modal'
+import * as searchActionCreators from 'redux/modules/search'
 
 
-function mapStateToProps({}){
-
+function mapStateToProps({search}){
+  return {
+    searchText : search.text
+  }
 }
 
 
-function mapDispatchToProps(){
-
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({...searchActionCreators}, dispatch)
 }
 
 
@@ -18,5 +20,5 @@ function mapDispatchToProps(){
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-  )(Modal)
+  )(Search)
   
