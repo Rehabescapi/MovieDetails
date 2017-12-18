@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 const PageNotFound = () => (
-  <div className="page-not-found">
-    Were sorry this page doesnt exist!
+  <div className='page-not-found'>
+    {'Were sorry this page doesnt exist!'}
   </div>
-);
+)
 
-export default PageNotFound;
+export default PageNotFound

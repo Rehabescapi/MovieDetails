@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
-
+import React from 'react'
 import { HeaderComponent as Header } from 'components'
 import { MainContainer} from 'containers'
 

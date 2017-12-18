@@ -1,8 +1,7 @@
-import React , {Component} from 'react'
-import PropTypes, { object } from 'prop-types'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import { bindActionCreators } from 'redux';
-
+import { bindActionCreators } from 'redux'
 
 import {MovieListContainer, SearchContainer} from 'containers'
 /* eslint-disable */
@@ -20,11 +19,6 @@ import {getGenreList} from 'config/constants'
 		
     }
     
-
-	componentDidMount()
-	{
-		
-	}
 	componentDidUpdate()
 	{
 		const { dispatch, getState, apiNeeded } = this.props
