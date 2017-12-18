@@ -2,7 +2,7 @@
 import { genre, config, getSearchParams, initialQuery } from 'config/constants'
 
 export function fetchingData () {
-  return fetch('http://localhost:3004/results', {})
+  return config.initialQuery
 }
 
 export function getInitialList () {

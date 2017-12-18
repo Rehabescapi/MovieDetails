@@ -8,7 +8,9 @@
     "production": "NODE_ENV='production' webpack -p",
     "lint": "eslint app/.; exit 0",
     "fix": "eslint --fix app/.; exit 0",
-    "api": "json-server --watch moviecard.json --port 3004"
+    "api": "json-server --watch moviecard.json --port 3004",
+    "firebase-init": "firebase login && firebase init",
+    "deploy": "npm run production && firebase deploy"
   },
   "author": "Jason Lehmann with original spec by _____",
   "license": "ISC",

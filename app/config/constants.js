@@ -5,9 +5,10 @@ export const config = {
   andKey: '&api_key=c4caddf3d2f1e3a21633c2611179f2e4',
   detailQuery: 'https://api.themoviedb.org/3/movie/',
   detailQueryB: '&append_to_response=releases,credits',
-  searchQuery: 'http://api.themoviedb.org/3/search/movie?query='
+  searchQuery: 'http://api.themoviedb.org/3/search/movie?query=',
+  initialQuery : 'https://api.themoviedb.org/3/discover/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4'
 }
-console.log('woo')
+
 
 // https://api.themoviedb.org/3/search/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4&query=
 const genre = [

@@ -33,7 +33,7 @@ class Search extends Component {
           value={this.searchText} />
         <button id={style.inputButton}
           onClick={this.handleSubmit}>
-          {'Duck'}
+          {'Search'}
         </button>
       </span>
     )

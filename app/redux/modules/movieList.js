@@ -1,4 +1,4 @@
-import { getFromGenre } from 'config/api'
+import { getFromGenre ,fetchingData} from 'config/api'
 import { configureCard } from 'config/utils'
 import { cycleGenre } from 'redux/modules/genreList'
 
@@ -17,7 +17,7 @@ const InitialState = {
   genreState: []
 }
 
-export function initialList (location = 'http://localhost:3004/db') {
+export function initialList (location = fetchingData()) {
   return function action (dispatch, getState) {
     dispatch(DataFetchin())
 

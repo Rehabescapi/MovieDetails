@@ -5,7 +5,8 @@ export const config = {
     andKey: '&api_key=api_key=Your_Api_KeyHere',
     detailQuery: 'https://api.themoviedb.org/3/movie/',
     detailQueryB: '&append_to_response=releases,credits',
-    searchQuery: 'http://api.themoviedb.org/3/search/movie?query='
+    searchQuery: 'http://api.themoviedb.org/3/search/movie?query=',
+    initialQuery :  'https://api.themoviedb.org/3/discover/movie?api_key=Your_Api_Key_here'
   }
   
   
