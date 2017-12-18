@@ -7,14 +7,14 @@ import PropTypes from 'prop-types'
  class DetailsCard extends Component {
   constructor (props) {
     super(props)
-    console.log(this.props.detail)
+    
     
   }
 
     render () {
        var {poster_path, backdrop_path,  title, genre_ids ,overview } = this.props.movie
        var {release_date , cast, rating, runtime, genre} = this.props.detail
-       console.log(genre)
+      
        const imgSrc = 'https://image.tmdb.org/t/p/w1280'
        const pstSrc ='https://image.tmdb.org/t/p/w342'
        let stylez = {}
@@ -22,7 +22,7 @@ import PropTypes from 'prop-types'
          stylez = {
            backgroundImage : 'url(' + imgSrc + backdrop_path + ')'
        }}
-      console.log(genre)
+     
       return (
         <div className={style.detailsCard} style={stylez}>
           <div id={style.content}>

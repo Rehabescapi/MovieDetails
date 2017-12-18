@@ -27,11 +27,21 @@ componentWillMount() {
   
   
 }
+componentWillReceiveProps(nextProps) {
+  console.log(nextProps)
+  const {movieId, dispatch} = this.props
+  if(nextProps.history.action ==='REPLACE'&& !nextProps.detail)
+  {
+    console.log('woo')
+    dispatch(actions.fetchAndHandleDetail(nextProps.match.params.movieId))
+  }
+}
 
 
   render () {
     const imgSrc = 'https://image.tmdb.org/t/p/w500'
     let {movie , detail} = this.props
+    console.log(this.props)
     return (
      
       <span> 
@@ -59,7 +69,7 @@ DetailContainer.contextTypes = {
 
 function mapStateToProps ( state , props) {
  var movieId = props.match.params.movieId
- 
+ console.log(state)
   return {
    movie : state.movieList.movies[movieId],
     hasErrored: state.movieList.hasErrored,
