@@ -41,7 +41,7 @@ componentWillReceiveProps(nextProps) {
   render () {
     const imgSrc = 'https://image.tmdb.org/t/p/w500'
     let {movie , detail} = this.props
-    console.log(this.props)
+    
     return (
      
       <span> 
@@ -69,7 +69,6 @@ DetailContainer.contextTypes = {
 
 function mapStateToProps ( state , props) {
  var movieId = props.match.params.movieId
- console.log(state)
   return {
    movie : state.movieList.movies[movieId],
     hasErrored: state.movieList.hasErrored,
