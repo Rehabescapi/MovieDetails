@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import './Search.css';
+import * as style from './Search.css';
 
-
+var toggle = false;
+var bandaid = '';
 class Search extends Component {
 	constructor(props) {
 		super(props);
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		
 		console.log(props)
 	}
 	componentDidMount(props)
@@ -24,16 +27,17 @@ class Search extends Component {
 		//e.preventDefault()
 		this.props.searchAndHandleResultText()
 		
+		
 	}
 	componentWillUpdate(nextProps, nextState){
 		var {dispatch} = nextProps
 		if(nextProps.success ){
 			console.log(nextProps.success)
-
-			this.context.router.history.push('/movie/'+ nextProps.success)
 			nextProps.clearId()
-			this.context.router.history.go(1)
-			this.setState()
+			this.context.router.history.replace('/movie/'+ nextProps.success)
+			
+			
+			
 			
 		}
 
@@ -42,13 +46,11 @@ class Search extends Component {
 	render() {
 		return (
 			<span>
-			<input type="text" id="searchTitle" placeholder="Search Title" onChange={this.handleChange}  value={this.searchText} />
-			<button
+			<input id={style.searchInput} type="text" id="searchTitle" placeholder="Search Title" onChange={this.handleChange} onSubmit={this.handleSubmit} value={this.searchText} />
+			<button id={style.inputButton}
 			onClick={this.handleSubmit}>
 			{'Duck'}
 		  </button>
-		 
-		 
 		  </span>
 		)
 	}

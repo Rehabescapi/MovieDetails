@@ -23,12 +23,11 @@ export function searchAndHandleResultText () {
     return function (dispatch ,getState, push) {
         var text = getState().search.queryText
         var movieList = getState().movieList.movies
-        console.log(movieList)
+        
         dispatch(searchSubmit)
         fetch(searchMovie(text))
         .then((response) => response.json())
         .then(function(data){
-            console.log(data.results[0])
             //if(already in the system)
        var x //very ugly will look into better way
        data.results.forEach(element => {

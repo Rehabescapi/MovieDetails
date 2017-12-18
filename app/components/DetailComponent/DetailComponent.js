@@ -24,7 +24,7 @@ import PropTypes from 'prop-types'
        }}
       console.log(genre)
       return (
-        <div id={style.detailsCard} style={stylez}>
+        <div className={style.detailsCard} style={stylez}>
           <div id={style.content}>
             <img src={pstSrc + poster_path} alt='movie poster' />
             <div id={style.contentAlign}>
@@ -32,7 +32,7 @@ import PropTypes from 'prop-types'
               <p>{'Rated: '}{rating}</p>
               <ul id={style.genreList}>{'Genre: '} {(genre).map(element => {
               
-              return <li> {element.name} </li>
+              return <li key = {element.name}> {element.name} </li>
               }) 
               }
         

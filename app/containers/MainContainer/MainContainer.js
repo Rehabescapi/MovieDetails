@@ -26,8 +26,6 @@ import {GetRoutes}  from 'config/constants'
 	}
 
 	componentDidMount() {
-	
-		
 		const { dispatch, getState, apiNeeded } = this.props
 		
 		dispatch(actions.initialList())
@@ -40,15 +38,13 @@ import {GetRoutes}  from 'config/constants'
 	render() {
 		return (
 			<div id='main'>
-			<SearchContainer />
+				
 			<Router>  
                 <Switch >
                     <Route exact path ='/' component= {HomeContainer} />
                     <Route path ='/movie/:movieId' component ={DetailContainer}/>
                     <Route component={PageNotFound}/> 
                 </Switch>
-           
-
         </Router>
 			</div>
 		);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { DetailComponent, CastComponent } from 'components'
+import {SearchContainer} from 'containers'
 import { getQuery } from '../../config/constants'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
@@ -32,7 +33,9 @@ componentWillMount() {
     const imgSrc = 'https://image.tmdb.org/t/p/w500'
     let {movie , detail} = this.props
     return (
+     
       <span> 
+         <SearchContainer/>
    {detail &&movie?//unpolished conditional
    <DetailComponent movie = {movie} detail = {detail}/>
    :<div>nada </div>

@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 
-import {MovieListContainer, Search} from 'containers'
+import {MovieListContainer, SearchContainer} from 'containers'
 /* eslint-disable */
 import { HeaderComponent} from 'components'
 import * as actions from 'redux/modules/movieList'
@@ -42,7 +42,7 @@ import {getGenreList} from 'config/constants'
 		
 		return (
 			<div id='main'>
-		
+		<SearchContainer />
 			
 				<div className='innerContainer'>
 				
