@@ -10,8 +10,9 @@ coverage
 build
 
 
-app/config/constants
+
 # misc
 .DS_Store
 .env
 npm-debug.log
+app/config/constants.js

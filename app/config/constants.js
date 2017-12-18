@@ -7,6 +7,7 @@ export const config = {
   detailQueryB: '&append_to_response=releases,credits',
   searchQuery: 'http://api.themoviedb.org/3/search/movie?query='
 }
+console.log('woo')
 
 // https://api.themoviedb.org/3/search/movie?api_key=c4caddf3d2f1e3a21633c2611179f2e4&query=
 const genre = [
