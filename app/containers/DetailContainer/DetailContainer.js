@@ -19,7 +19,7 @@ class DetailContainer extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    //Solves an issue if container is called from an existing detail component  
+    // Solves an issue if container is called from an existing detail component
     const { dispatch } = this.props
     if (nextProps.history.action === 'REPLACE' && !nextProps.detail) {
       dispatch(actions.fetchAndHandleDetail(nextProps.match.params.movieId))

@@ -33,7 +33,7 @@ import {getGenreList} from 'config/constants'
 	render() {
 
 		 // PS - Can we be more descriptive with variable names here? 'a' doesn't tell me what this actually is. Also, on line 46, if we call the parameter 'genre', it might be less confusing to see things like 'genre.id' instead of 'id.id'
-		 let a = Object.values(this.props.genreTypes)
+		 let genres = Object.values(this.props.genreTypes)
 
 		return (
 			<div id='main'>
@@ -43,7 +43,7 @@ import {getGenreList} from 'config/constants'
 
 					{this.props.isLoading
 					? <div> Loading </div>
-					:a.map(( id)=>(
+					:genres.map(( id)=>(
 						<MovieListContainer key ={id.id}  id = {id.id} Title={id.title} listType={id.title} movieList = {id.movies}/>
 					))}
 				</div>

@@ -1,4 +1,4 @@
-import { getFromGenre ,fetchingData} from 'config/api'
+import { getFromGenre, fetchingData} from 'config/api'
 import { configureCard } from 'config/utils'
 import { cycleGenre } from 'redux/modules/genreList'
 

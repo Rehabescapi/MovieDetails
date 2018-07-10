@@ -11,19 +11,22 @@ const PATHS = {
   app: path.join(__dirname, 'app'),
   build: path.join(__dirname, 'dist'),
 }
+const isProduction = process.env.NODE_ENV === 'production'
+process.env.BABEL_ENV = isProduction ? 'production': 'development';
 
 
 const config = {
   entry: [
     PATHS.app
   ],
+  mode : process.env.BABEL_ENV || 'development',
   output: {
     path: PATHS.build,
     filename: 'index_bundle.js',
     publicPath:'/'
   },
   module: {
-    loaders: [
+    rules: [
       {test:/\.json$/, loader: 'json'},
       {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
       {test: /\.css$/, loader: 'style-loader!css-loader?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]'}
@@ -31,9 +34,8 @@ const config = {
   },
   resolve: {
     modules: [ path.resolve('./app'), 'node_modules'],
-    root: path.resolve('./app'),
+    //root: path.resolve('./app'),
     extensions: [
-      '',
       '.webpack.js',
       '.web.js',
       '.tsx',
@@ -48,12 +50,11 @@ const config = {
 
 
 
-const isProduction = process.env.NODE_ENV === 'production'
-process.env.BABEL_ENV = isProduction ? 'production': 'development';
+
 
 
 const developmentConfig = {
-  devtool: 'cheap-module-inline-source-map',
+  //devtool: 'cheap-module-inline-source-map',
   devServer: {
     inline: true,
     progress: true,
@@ -87,7 +88,7 @@ const productionConfig = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: true, minimize: true })
+   // new config.optimization ({ sourceMap: true, minimize: true })
   ]
 }
 
