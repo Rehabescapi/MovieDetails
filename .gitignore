@@ -16,3 +16,5 @@ build
 .env
 npm-debug.log
 app/config/constants.js
+dist/index_bundle.js
+dist/index_bundle.js.map
