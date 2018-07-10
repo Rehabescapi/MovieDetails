@@ -7,21 +7,26 @@ class Search extends Component {
   constructor (props) {
     super(props)
 
+    // PS - We can use es6 arrow functions so that we don't need to explicitly bind 'this'
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+  // PS - I'm not sure where the success prop is coming from - it looks like SearchContainer is passing in a prop called successId
   componentWillUpdate (nextProps, nextState) {
     if (nextProps.success) {
       nextProps.clearId()
       this.context.router.history.replace('/movie/' + nextProps.success)
     }
   }
+
   handleChange (e) {
     this.props.handleChange(e.target.value)
   }
 
   handleSubmit (e) {
     e.preventDefault()
+    // PS - It doesn't look like this prop is getting passed in from SearchContainer
     this.props.searchAndHandleResultText()
   }
 

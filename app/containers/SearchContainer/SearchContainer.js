@@ -8,6 +8,7 @@ import * as searchActionCreators from 'redux/modules/search'
 import { withRouter } from 'react-router-dom'
 
 class SearchContainer extends Component {
+  // PS - Like MovieListContainer, this doesn't seem like it needs to be a component
   render () {
     return (<Search searchText={this.props.searchText} successId = {this.props.success}/>
 

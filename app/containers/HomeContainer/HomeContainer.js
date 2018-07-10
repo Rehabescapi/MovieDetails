@@ -13,16 +13,16 @@ import {getGenreList} from 'config/constants'
  class HomeContainer extends Component {
 	constructor(props) {
 		super(props);
-		
+
 		const {dispatch} = props
 		this.boundActionCreators = bindActionCreators(actions,genreActions, dispatch)
-		
+
     }
-    
+
 	componentDidUpdate()
 	{
 		const { dispatch, getState, apiNeeded } = this.props
-	
+
 		if(apiNeeded){
 			dispatch(actions.clearApi())
 			dispatch(actions.initialList(apiNeeded))
@@ -31,15 +31,16 @@ import {getGenreList} from 'config/constants'
 	}
 
 	render() {
-		
+
+		 // PS - Can we be more descriptive with variable names here? 'a' doesn't tell me what this actually is. Also, on line 46, if we call the parameter 'genre', it might be less confusing to see things like 'genre.id' instead of 'id.id'
 		 let a = Object.values(this.props.genreTypes)
-		
+
 		return (
 			<div id='main'>
 		<SearchContainer />
-			
+
 				<div className='innerContainer'>
-				
+
 					{this.props.isLoading
 					? <div> Loading </div>
 					:a.map(( id)=>(
@@ -53,7 +54,7 @@ import {getGenreList} from 'config/constants'
 
 HomeContainer.propTypes = {
 	genreTypes : PropTypes.object.isRequired,
-	
+
 }
 
 HomeContainer.contextTypes = {
@@ -63,18 +64,18 @@ HomeContainer.contextTypes = {
 
 
 function mapStateToProps ( state ){
-	
+
 	return {
 	  movieList : state.movieList.movies,
 	  hasErrored: state.itemsHasErroed,
 	  isLoading: state.genreList.isLoading,
 	  genreTypes : state.genreList.genres,
 	  apiNeeded : state.movieList.apiNeeded
-	  
+
 	}
   }
-  
-  
+
+
 
 
 

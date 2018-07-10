@@ -20,6 +20,7 @@ class MovieListContainer extends Component {
 
   }
 
+  // PS - It seems to me like we don't need this function if we make each movie a Link component
   handleClick (movieId) {
     this.context.router.history.replace('/movie/' + movieId)
   }
@@ -31,6 +32,7 @@ class MovieListContainer extends Component {
       parsedMovies.push(movies[element])
     })
 
+    // PS - I'm not sure why we need a component in this file. It seems to me like we can move all this logic into the MovieListComponent and leave this container to just have the redux functions.
     return (
 
       <div id='list'>
@@ -39,6 +41,7 @@ class MovieListContainer extends Component {
         {this.props.movies &&
         <div>
           <h2>{this.props.Title} {'Movies'}</h2>
+          {/* PS - We can use the spread operator here to make it easier to pass down props from the parent component */}
           <MovieListComponent movies={parsedMovies} listType={this.props.listType} Title={this.props.Title}
             handleClick= {this.handleClick}/>
 

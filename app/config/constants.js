@@ -23,6 +23,7 @@ const genre = [
   { genre: 'SciFi', id: 878, active: true }
 ]
 
+// PS - It seems unintuitive to me that a constants file is exporting functions. Could we just export the constant values?
 export function getSearchParams () {
   return config.apiQuery + config.searchParams
 }
