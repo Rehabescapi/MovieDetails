@@ -5,15 +5,14 @@ import { bindActionCreators } from 'redux'
 
 import {MovieListContainer, SearchContainer} from 'containers'
 /* eslint-disable */
-import { HeaderComponent} from 'components'
+
 import * as actions from 'redux/modules/movieList'
 import * as genreActions from 'redux/modules/genreList'
-import {getGenreList} from 'config/constants'
+
 
  class HomeContainer extends Component {
 	constructor(props) {
 		super(props);
-
 		const {dispatch} = props
 		this.boundActionCreators = bindActionCreators(actions,genreActions, dispatch)
 
@@ -37,7 +36,7 @@ import {getGenreList} from 'config/constants'
 
 		return (
 			<div id='main'>
-		<SearchContainer />
+		{/*<SearchContainer />*/}
 
 				<div className='innerContainer'>
 

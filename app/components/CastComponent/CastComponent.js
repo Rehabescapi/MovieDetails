@@ -10,16 +10,16 @@ class CastComponent extends Component {
     return (
       <div id={style.cast}> {'Top Billed Cast'} <ul id ={style.castList}>
         {/* PS - Can we consider changing the name each to something more descriptive, like castMember? */}
-        {(this.props.cast).map((each, key) => {
+        {(this.props.cast).map((actor, key) => {
           return (
             <li key = {key} >
               <div id={style.actorsStyle} >
                 <div id={style.actors}>
                   {/* PS - It's great that you have an alt tag here for accessibility! */}
-                  <img id={style.actorPic} src={imgSrc + each.profile_path} alt={'picture of ' + each.name} />
+                  <img id={style.actorPic} src={imgSrc + actor.profile_path} alt={'picture of ' + actor.name} />
                 </div>
-                <h4>{each.name}</h4>
-                <h6>{each.character}</h6>
+                <h4>{actor.name}</h4>
+                <h6>{actor.character}</h6>
               </div>
             </li>
           )

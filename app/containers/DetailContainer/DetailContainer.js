@@ -4,8 +4,11 @@ import { DetailComponent, CastComponent } from 'components'
 import {SearchContainer} from 'containers'
 import {connect} from 'react-redux'
 import * as actions from 'redux/modules/detailList'
-
 import { bindActionCreators } from 'redux'
+
+
+
+
 class DetailContainer extends Component {
   constructor (props) {
     super(props)
@@ -32,7 +35,7 @@ class DetailContainer extends Component {
 
     return (
       <span>
-        <SearchContainer/>
+       {/* <SearchContainer/>*/}
         {detail && movie// unpolished conditional
           ? <DetailComponent movie = {movie} detail = {detail}/>
           : <div> {'nada'} </div>

@@ -20,11 +20,11 @@ class Search extends Component {
     }
   }
 
-  handleChange (e) {
+  handleChange =  (e) => {
     this.props.handleChange(e.target.value)
   }
 
-  handleSubmit (e) {
+  handleSubmit = (e) => {
     e.preventDefault()
     // PS - It doesn't look like this prop is getting passed in from SearchContainer
     this.props.searchAndHandleResultText()

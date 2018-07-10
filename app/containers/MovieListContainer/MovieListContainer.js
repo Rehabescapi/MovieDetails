@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { MovieListComponent } from 'components'
+//import { Link } from 'react-router-dom'
+
 
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
@@ -11,7 +13,7 @@ class MovieListContainer extends Component {
   constructor (props) {
     super(props)
 
-    this.handleClick = this.handleClick.bind(this)
+    
     const {dispatch} = props
     this.boundActionCreators = bindActionCreators(actions, dispatch)
   }
@@ -21,12 +23,12 @@ class MovieListContainer extends Component {
   }
 
   // PS - It seems to me like we don't need this function if we make each movie a Link component
-  handleClick (movieId) {
+ /* handleClick (movieId) {
     this.context.router.history.replace('/movie/' + movieId)
-  }
+  }*/
 
   render () {
-    var {movieList, movies} = this.props
+    const {movieList, movies, listType, Title} = this.props
     let parsedMovies = []
     movieList.forEach(element => {
       parsedMovies.push(movies[element])
@@ -40,11 +42,11 @@ class MovieListContainer extends Component {
         <div> {'Loading...'} </div> }
         {this.props.movies &&
         <div>
-          <h2>{this.props.Title} {'Movies'}</h2>
+          <h2>{Title} {'Movies'}</h2>
           {/* PS - We can use the spread operator here to make it easier to pass down props from the parent component */}
-          <MovieListComponent movies={parsedMovies} listType={this.props.listType} Title={this.props.Title}
-            handleClick= {this.handleClick}/>
-
+         
+            <MovieListComponent movies={parsedMovies} listType={listType} Title={Title}/>
+         
         </div>
         }
       </div>

@@ -11,7 +11,7 @@ import * as genreActions from 'redux/modules/genreList'
 
 /* eslint-disable */
 
-import {GetRoutes}  from 'config/constants'
+
  class MainContainer extends Component {
 	constructor(props) {
 		super(props);
@@ -20,7 +20,7 @@ import {GetRoutes}  from 'config/constants'
 	}
 
 	componentDidMount() {
-		const { dispatch, getState, apiNeeded } = this.props
+		const { dispatch } = this.props
 		dispatch(actions.initialList())
 		dispatch(genreActions.initialGenre())
 	}
