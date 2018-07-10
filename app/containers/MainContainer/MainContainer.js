@@ -1,10 +1,10 @@
-import React, { Component} from 'react'
+import React, { Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
 import { connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { DetailContainer, HomeContainer } from 'containers'
-import { PageNotFound } from 'components'
+import { PageNotFound, HeaderComponent as Header } from 'components'
 
 import * as actions from 'redux/modules/movieList'
 import * as genreActions from 'redux/modules/genreList'
@@ -30,15 +30,21 @@ import * as genreActions from 'redux/modules/genreList'
 	
 	render() {
 		return (
+			<div>
+			 
 			<div id='main'>
 				
-			<Router>  
+			 <Router>
+				 <Fragment>
+				 <Header />
                 <Switch >
                     <Route exact path ='/' component= {HomeContainer} />
                     <Route path ='/movie/:movieId' component ={DetailContainer}/>
                     <Route component={PageNotFound}/> 
                 </Switch>
-        </Router>
+				</Fragment>
+			</Router>
+			</div>
 			</div>
 		);
 	}

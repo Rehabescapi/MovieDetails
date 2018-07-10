@@ -13,21 +13,6 @@ var initialState = {
 
 }
 
-/*
-var moviesdetail = {
-
-  rating: '',
-  release_date: '',
-  cast: []
-}
-var character = {
-  cast_id: '',
-  character: '',
-  id: '',
-  name: '',
-  profile_path: ''
-
-} */
 
 export function fetchAndHandleDetail (movieId) {
   return function action (dispatch, getState) {

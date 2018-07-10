@@ -13,8 +13,8 @@ export default class MovieListComponent extends Component {
 
         {/* PS - Can we consider changing the name each to something more descriptive, like movie? */}
         {(movies).map((movie, key) => {
-          // this.props.handleClick(each.id)
-          // PS - Can we make each of these a Link component (from react-router-dom) so that we don't need to define a click handler?
+         
+          
           return (
             <div className={outerCard} key = {key} >
               <MovieCardComponent key ={key}   movieId ={movie.id} backdrop={movie.backdrop_path} poster={movie.poster_path}
@@ -33,7 +33,6 @@ export default class MovieListComponent extends Component {
 
 MovieListComponent.propTypes =
 {
-  
   movies: PropTypes.array,
   ListType: PropTypes.string
 }

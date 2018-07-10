@@ -18,7 +18,7 @@ const InitialState = {
 }
 
 export function initialList (location = fetchingData()) {
-  return function action (dispatch, getState) {
+  return function action (dispatch) {
     dispatch(DataFetchin())
 
     var myHeaders = new Headers()

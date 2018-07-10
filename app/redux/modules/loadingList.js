@@ -1,3 +1,9 @@
+/**
+ * Filler File
+ */
+
+
+
 // define constants for different actions
 const UPDATE = 'uhs/schedule/UPDATE'
 const UPDATE_SUCCESS = 'uhs/schedule/UPDATE_SUCCESS'
@@ -7,7 +13,8 @@ const SEARCH = 'uhs/schedule/SEARCH'
 const SEARCH_SUCCESS = 'uhs/schedule/SEARCH_SUCCESS'
 const SEARCH_FAIL = 'uhs/schedule/SEARCH_FAIL'
 const UPDATE_TEST = 'UPDATE_TEST'
-// initial state object, your may put more initial object here if needed
+
+
 const initialState = {
   loading: false
 }

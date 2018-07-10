@@ -31,7 +31,7 @@ class CastComponent extends Component {
 }
 
 CastComponent.propTypes = {
-  cast: PropTypes.object.isRequired
+  cast: PropTypes.array.isRequired
 }
 
 export default CastComponent

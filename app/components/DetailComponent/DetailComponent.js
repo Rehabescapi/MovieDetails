@@ -46,7 +46,6 @@ DetailsCard.propTypes = {
   movie: PropTypes.object.isRequired,
   detail: PropTypes.object.isRequired,
   genre: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
   match: PropTypes.object
 
 }
