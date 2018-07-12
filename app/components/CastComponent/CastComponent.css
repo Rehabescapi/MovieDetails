@@ -23,7 +23,7 @@
 #cast h4 {
 	font-size:2.2rem;
     margin:3% 0 0 0;
-    display: block;
+   
     -webkit-margin-before: 1.33em;
     -webkit-margin-after: 1.33em;
     -webkit-margin-start: 0px;
@@ -42,8 +42,9 @@
     font-weight: bold;
 }
 #actorsStyle {
-	display:inline-block;
-	height:187px;
+    display:flex;
+    flex-direction: column;
+	/*height:187px;*/
 	margin:0 auto;
     min-width:19%;
     text-align: center;
@@ -59,8 +60,10 @@
 	position:relative;
     overflow:hidden;
     width:173px;
-	
+	text-overflow: ellipsis
 }
+
+
 #actorsStyle p {
     text-align:center;
     color: white;

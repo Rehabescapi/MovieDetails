@@ -38,14 +38,14 @@ class MovieListContainer extends Component {
     return (
 
       <div id='list'>
-        {!this.props.movies &&
+        {!movies &&
         <div> {'Loading...'} </div> }
-        {this.props.movies &&
+        {movies &&
         <div>
           <h2>{Title} {'Movies'}</h2>
           {/* PS - We can use the spread operator here to make it easier to pass down props from the parent component */}
          
-            <MovieListComponent movies={parsedMovies} listType={listType} Title={Title}/>
+            <MovieListComponent parsedMovies={parsedMovies}   {...this.props} /*listType={listType} Title={Title}*//>
          
         </div>
         }

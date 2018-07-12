@@ -6,24 +6,26 @@ import {MovieCardComponent} from 'components'
 import { Link } from 'react-router-dom'
 export default class MovieListComponent extends Component {
   render () {
-    const {movies} = this.props
+    //debugger
+    const {parsedMovies} = this.props
     return (
 
       <div className={movieListContainer} >
 
         {/* PS - Can we consider changing the name each to something more descriptive, like movie? */}
-        {(movies).map((movie, key) => {
+        {(parsedMovies).map((movie, key) => {
          
           
           return (
             <div className={outerCard} key = {key} >
+            {/*todo collapse movie */}
               <MovieCardComponent key ={key}   movieId ={movie.id} backdrop={movie.backdrop_path} poster={movie.poster_path}
                 title={movie.title} />
             </div>
           )
         }
         )}
-        <span className='stretch' />
+       {/* <span className='stretch' />*/}
 
       </div>
 
@@ -33,6 +35,6 @@ export default class MovieListComponent extends Component {
 
 MovieListComponent.propTypes =
 {
-  movies: PropTypes.array,
+  parsedMovies: PropTypes.array,
   ListType: PropTypes.string
 }
