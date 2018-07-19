@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
 import { connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { DetailContainer, HomeContainer } from 'containers'
+import { DetailContainer, HomeContainer, SearchContainer } from 'containers'
 import { PageNotFound, HeaderComponent as Header } from 'components'
 
 import * as actions from 'redux/modules/movieList'
@@ -29,6 +29,7 @@ import * as genreActions from 'redux/modules/genreList'
 	}
 	
 	render() {
+		
 		return (
 			<div>
 			 
@@ -37,6 +38,8 @@ import * as genreActions from 'redux/modules/genreList'
 			 <Router>
 				 <Fragment>
 				 <Header />
+				<SearchContainer/> 
+				
                 <Switch >
                     <Route exact path ='/' component= {HomeContainer} />
                     <Route path ='/movie/:movieId' component ={DetailContainer}/>

@@ -20,9 +20,9 @@ class CastComponent extends Component {
                   {/* PS - It's great that you have an alt tag here for accessibility! */}
                   <img id={style.actorPic} src={imgSrc + actor.profile_path} alt={'picture of ' + actor.name} />
                 </div>
-                {(actor.name).length <= 16 ?
+                {(actor.name).length <= 14 ?
                 <h4> {actor.name} </h4>
-                :<h4 style={{margin :'0 0 7px 0'}}> { actor.name} </h4>
+                :<h4 style={{margin :'0 0 9px 0'}}> { actor.name} </h4>
                 }
                 
                 

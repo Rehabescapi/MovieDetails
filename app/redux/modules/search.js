@@ -8,18 +8,26 @@ const SUCCESS_ID = 'SUCCESS_ID'
 const CLEAR_ID = 'CLEAR_ID'
 var InitialState = {
   queryText: '',
-  successId: ''
+  successId: '',
+  text :'',
+  success : false
 }
-
+/*
 export function updateSearchText (text) {
   return {
     type: UPDATE_SEARCH_TEXT,
-    text
+    payload : text
+  }
+}*/
+export function searchWoo (text= '') {
+  console.log('woo')
+  return (getState) => {
+   // text = getState().search.queryText
+    console.log(text)
   }
 }
-
 export function searchAndHandleResultText () {
-  return function (dispatch, getState, push) {
+  return function (dispatch, getState) {
     var text = getState().search.queryText
     var movieList = getState().movieList.movies
 
@@ -35,7 +43,7 @@ export function searchAndHandleResultText () {
           }
         })
         if (x) {
-          // push x.id
+          
           dispatch(successId(x.id))
         } else {
           dispatch(AddMovie(configureCard(data.results[0])))

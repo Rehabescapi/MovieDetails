@@ -1,30 +1,46 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
-import { Search } from 'components'
+import { SearchComponent } from 'components'
 import { connect } from 'react-redux'
-import * as searchActionCreators from 'redux/modules/search'
+import * as searchAction from 'redux/modules/search'
 
 import { withRouter } from 'react-router-dom'
 
 class SearchContainer extends Component {
   // PS - Like MovieListContainer, this doesn't seem like it needs to be a component
-  render () {
-    return (<Search searchText={this.props.searchText} successId = {this.props.success}/>
 
-    )
+  componentWillUpdate (nextProps) {
+    if (nextProps.success) {
+      nextProps.clearId()
+      this.context.router.history.replace('/movie/' + nextProps.success)
+    }
   }
+ handleChange(){
+  return null
+}
+
+  
 }
 
 function mapStateToProps ({search}) {
+ 
   return {
     searchText: search.queryText,
-    success: search.successId
+    successId: search.successId,
+    success: search.success
   }
 }
 
-function mapDispatchToProps (dispatch) {
-  return bindActionCreators({...searchActionCreators}, dispatch)
+const mapDispatchToProps =dispatch => {
+  //console.log(...searchActionCreators)
+  return {
+   // handleChange: (text) => dispatch(searchAction.handleChange(text)),
+   handleChange : text => { dispatch(searchAction.handleChange(text))},
+    submitSearch : () => { dispatch (searchAction.searchAndHandleResultText())}
+   
+  }
+  //return bindActionCreators({...searchAction}, dispatch)
 }
 
 SearchContainer.propTypes = {
@@ -36,4 +52,4 @@ SearchContainer.propTypes = {
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchContainer))
+)(SearchComponent))

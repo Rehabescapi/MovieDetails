@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { DetailComponent, CastComponent } from 'components'
-import {SearchContainer} from 'containers'
+
 import {connect} from 'react-redux'
 import * as actions from 'redux/modules/detailList'
 import { bindActionCreators } from 'redux'
